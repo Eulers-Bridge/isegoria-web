@@ -1,0 +1,80 @@
+[
+  {
+    "name": "Miguel Wood",
+    "bio": "Bio coming soon",
+    "region": "australia",
+    "title": "Co-Founder & CEO"
+  },
+  {
+    "name": "Alan Gao",
+    "bio": "Bio coming soon",
+    "region": "china",
+    "title": "Co-Founder & iOS Developer"
+  },
+  {
+    "name": "Jay Lynch",
+    "bio": "Bio coming soon",
+    "region": "australia",
+    "title": "CTO"
+  },
+  {
+    "name": "Drew Smith",
+    "bio": "Bio coming soon",
+    "region": "uk",
+    "title": "UI / UX Designer"
+  },
+  {
+    "name": "Yikai Gong",
+    "bio": "Bio coming soon",
+    "region": "china",
+    "title": "Backend and Web Engineer"
+  },
+  {
+    "name": "Charlie Eastaugh",
+    "bio": "Bio coming soon",
+    "region": "uk",
+    "title": "Privacy, Ethics & Security Advisor"
+  },
+  {
+    "name": "Greg Newitt",
+    "bio": "Bio coming soon",
+    "region": "australia",
+    "title": "Co-Founder & Technical Adviser"
+  },
+  {
+    "name": "David Rivera",
+    "bio": "Bio coming soon",
+    "region": "equador",
+    "title": "Data & Systems Architect"
+  },
+  {
+    "name": "Anthony Quattrone",
+    "bio": "Bio coming soon",
+    "region": "australia",
+    "title": "Data Scientist"
+  },
+  {
+    "name": "Haobei Zhang",
+    "bio": "Bio coming soon",
+    "region": "china",
+    "title": "Financial Planning & Analysis"
+  },
+  {
+    "name": "Florence Leong",
+    "bio": "Bio coming soon",
+    "region": "australia",
+    "title": "Community Dynamics"
+  },
+  {
+    "name": "Sebastian Jachec",
+    "bio": "Bio coming soon",
+    "region": "uk",
+    "title": "Android Developer"
+  },
+  {
+    "name": "Patrick Carroll",
+    "bio": "Bio coming soon",
+    "region": "australia",
+    "title": "Data Security Manager"
+  }
+]

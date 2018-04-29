@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import logo from './react.svg';
 import './Home.css';
 
-const Content = styled.div``;
+export const Content = styled.div``;
 
 class Home extends React.Component {
   render() {
