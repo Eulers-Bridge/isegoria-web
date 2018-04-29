@@ -3,20 +3,26 @@ import React from 'react';
 import { StaticRouter } from 'react-router-dom';
 import express from 'express';
 import { renderToString } from 'react-dom/server';
+import { ServerStyleSheet } from 'styled-components';
 
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
 
 const server = express();
+
 server
   .disable('x-powered-by')
   .use(express.static(process.env.RAZZLE_PUBLIC_DIR))
   .get('/*', (req, res) => {
     const context = {};
+    const sheet = new ServerStyleSheet();
     const markup = renderToString(
-      <StaticRouter context={context} location={req.url}>
-        <App />
-      </StaticRouter>
+      sheet.collectStyles(
+        <StaticRouter context={context} location={req.url}>
+          <App />
+        </StaticRouter>
+      )
     );
+    const styleTags = sheet.getStyleTags();
 
     if (context.url) {
       res.redirect(context.url);
@@ -35,6 +41,7 @@ server
         ${process.env.NODE_ENV === 'production'
           ? `<script src="${assets.client.js}" defer></script>`
           : `<script src="${assets.client.js}" defer crossorigin></script>`}
+        ${styleTags}
     </head>
     <body>
         <div id="root">${markup}</div>

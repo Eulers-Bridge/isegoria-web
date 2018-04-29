@@ -1,11 +1,15 @@
 import React from 'react';
+import styled from 'styled-components';
+
 import logo from './react.svg';
 import './Home.css';
+
+const Content = styled.div``;
 
 class Home extends React.Component {
   render() {
     return (
-      <div className="content">
+      <Content className="content">
         <nav id="navbar">
           <a className="logo" href="/">
             Isegoria<em>Beta</em>
@@ -163,7 +167,7 @@ class Home extends React.Component {
           <p>&copy; Euler’s Bridge 2017</p>
           </div>
         </footer>
-      </div>  
+      </Content>  
     );
   }
 }
