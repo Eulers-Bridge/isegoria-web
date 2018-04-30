@@ -5,6 +5,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as StaffActions from '../actions/staff';
 
+import NavBar from '../components/NavBar';
+
 import { Content } from './Home';
 import './Home.css';
 
@@ -61,14 +63,7 @@ class About extends React.Component {
 
     return (
       <Content className="content">
-        <nav id="navbar">
-          <a className="logo" href="/">
-            Isegoria<em>Beta</em>
-          </a>
-          <a href="/about">About Us</a>
-          <a href="/details">Details</a>
-        </nav>
-      
+        <NavBar />
       
         <header>
           <div className="container">

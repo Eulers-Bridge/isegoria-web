@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import NavBar from '../components/NavBar';
+
 import logo from './react.svg';
 import './Home.css';
 
@@ -10,14 +12,7 @@ class Home extends React.Component {
   render() {
     return (
       <Content className="content">
-        <nav id="navbar">
-          <a className="logo" href="/">
-            Isegoria<em>Beta</em>
-          </a>
-          <a href="/about">About Us</a>
-          <a href="/details">Details</a>
-        </nav>
-      
+        <NavBar />
       
         <header>
           <div className="container">
