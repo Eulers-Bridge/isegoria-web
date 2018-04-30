@@ -7,6 +7,7 @@ import Home from './Home';
 import About from './About';
 import Admin from './Admin';
 
+import './Fonts.css';
 import './App.css';
 
 const App = () => (
