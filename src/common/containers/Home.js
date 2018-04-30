@@ -16,7 +16,6 @@ class Home extends React.Component {
           </a>
           <a href="/about">About Us</a>
           <a href="/details">Details</a>
-          <a className="button" href="/signin" style={{marginLeft: 'auto'}}>Sign In</a>
         </nav>
       
       
