@@ -61,6 +61,14 @@ server
                   <script>
                     window.__INITIAL_STATE__ = ${serialize(initialState)}
                   </script>
+                  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-91233938-1"></script>
+                  <script>
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                    gtag('config', 'UA-91233938-1');
+                  </script>
+                  <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/2895682.js"></script>
               </body>
           </html>`
         );
