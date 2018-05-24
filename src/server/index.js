@@ -61,6 +61,7 @@ server
                   <script>
                     window.__INITIAL_STATE__ = ${serialize(initialState)}
                   </script>
+                  <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/2895682.js"></script>
               </body>
           </html>`
         );
