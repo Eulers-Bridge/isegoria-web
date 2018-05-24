@@ -7,6 +7,7 @@ const NavBar = () =>
     </a>
     <a href="/about">About Us</a>
     <a href="/details">Details</a>
+    <a href="/contact">Contact</a>
   </nav>
 
 export default NavBar;
