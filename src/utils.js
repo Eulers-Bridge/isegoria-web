@@ -2,7 +2,7 @@ import fetch from 'isomorphic-fetch';
 
 const API_BASE = {
   development: 'http://localhost:8080/dbinterface/api',
-  production: 'http://54.206.36.220/dbinterface/api'
+  production: 'https://isegoria.app/api'
 }[process.env.NODE_ENV]
 
 class HttpError extends Error {
