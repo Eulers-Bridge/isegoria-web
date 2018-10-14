@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { Link } from 'react-router-dom';
+
 import utils from '../../utils';
 
 const StyledContentItem = styled.div`
@@ -16,6 +18,14 @@ const StyledContentItem = styled.div`
 
   &:last-of-type {
     border-bottom: none;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
   }
 `;
 
@@ -66,6 +76,13 @@ const ContentItem = props => {
   } = item
   const { givenName, familyName } = creatorProfile
 
+  // ##TODON'T##
+  const singularContentType = `${contentType}`.replace(/s$/gi, '').toLowerCase()
+  const idField = item[`${singularContentType}Id`]
+    ? `${singularContentType}Id`
+    : 'nodeId'
+  const itemLink = `/admin/${contentType}/${item[idField]}`
+
   const creatorName = givenName && familyName
     ? `${givenName} ${familyName}`
     : givenName
@@ -89,13 +106,19 @@ const ContentItem = props => {
       {
         previewPhoto &&
           <ContentItemImage>
-            <img
-              alt={previewAlt}
-              src={previewPhoto} />
+            <Link to={itemLink}>
+              <img
+                alt={previewAlt}
+                src={previewPhoto} />
+            </Link>
           </ContentItemImage>
       }
       <ContentItemDetail>
-        <h4>{item.title || item.name}</h4>
+        <h4>
+          <Link to={itemLink}>
+            {item.title || item.name}
+          </Link>
+        </h4>
         <em>{utils.formatDate(item.date || item.created)}</em>
         {
           item.content &&

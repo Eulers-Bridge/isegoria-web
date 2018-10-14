@@ -3,13 +3,18 @@ import styled from 'styled-components';
 
 import { connect } from 'react-redux';
 
+import Route from 'react-router-dom/Route';
+import Switch from 'react-router-dom/Switch';
+
 import * as AuthActions from '../actions/auth';
+
+import AdminArticle from './AdminArticle';
+import AdminDashboard from './AdminDashboard';
+import AdminEvent from './AdminEvent';
+import AdminPhoto from './AdminPhoto';
 
 import AdminNavBar from '../components/AdminNavBar';
 import AdminSideBar from '../components/AdminSideBar';
-import ContentItem from '../components/ContentItem';
-import ContentSetControls from '../components/ContentSetControls';
-import Loading from '../components/Loading';
 
 import { Content } from './Home';
 
@@ -32,19 +37,10 @@ const AdminContent = styled.div`
     text-align: center;
   }
 `;
-const AdminFeed = styled.div``;
-const ContentSet = styled.div`
-  margin: 6rem 0;
-  padding: 0;
-
-  &:first-child {
-    margin-top: 2rem;
-  }
-`;
 
 class Admin extends React.Component {
   render() {
-    const { content, logout } = this.props;
+    const { logout } = this.props;
 
     return (
       <Content>
@@ -54,29 +50,13 @@ class Admin extends React.Component {
         <AdminContent>
           <AdminSideBar
             logout={logout} />
-          <AdminFeed>
-          {
-            Object.keys(content).map(contentType =>
-              <ContentSet key={`cs-${contentType}`}>
-                <h2>Recent {contentType}</h2>
-                {
-                  content[contentType].length > 0 &&
-                  content[contentType].map((item, i) =>
-                    <ContentItem
-                      contentType={contentType}
-                      item={item}
-                      key={`ci-${contentType}-${i}`} />
-                  )
-                }
-                {
-                  !(content[contentType].length > 0) &&
-                    <Loading />
-                }
-                <ContentSetControls contentType={contentType} />
-              </ContentSet>
-            )
-          }
-          </AdminFeed>
+
+          <Switch>
+            <Route path="/admin/articles/:id?" component={AdminArticle} />
+            <Route path="/admin/events/:id?" component={AdminEvent} />
+            <Route path="/admin/photos/:id?" component={AdminPhoto} />
+            <Route path="/" component={AdminDashboard} />
+          </Switch>
         </AdminContent>
       </Content>
     );
