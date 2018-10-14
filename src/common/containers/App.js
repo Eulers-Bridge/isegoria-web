@@ -32,10 +32,10 @@ class App extends React.Component {
   render () {
     return (
       <Switch>
-        <Route exact path="/" component={Home} />
         <Route path="/about" component={About} />
         <Route path="/contact" component={Contact} />
         <Route path="/login" component={Login} />
+        <Route exact path="/" component={Home} />
 
         <Route component={AuthContainer} />
       </Switch>
@@ -50,4 +50,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(withRouter(App));
+export default withRouter(connect(mapStateToProps)(App));

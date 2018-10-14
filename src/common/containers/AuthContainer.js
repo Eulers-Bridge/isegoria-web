@@ -15,9 +15,6 @@ class AuthContainer extends React.Component {
     const { dispatch, currentURL, isLoggedIn } = this.props
 
     if (!isLoggedIn) {
-      // ##TODO##
-      // set the current url/path for future redirection (we use a Redux action)
-      // then redirect (we use a React Router method)
       dispatch(setRedirectUrl(currentURL))
       dispatch(push("/login"))
     }
@@ -50,4 +47,4 @@ function mapStateToProps(state, ownProps) {
   }
 }
 
-export default connect(mapStateToProps)(withRouter(AuthContainer))
+export default withRouter(connect(mapStateToProps)(AuthContainer))
