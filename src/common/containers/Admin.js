@@ -34,8 +34,12 @@ const AdminContent = styled.div`
 `;
 const AdminFeed = styled.div``;
 const ContentSet = styled.div`
-  margin: 0;
+  margin: 6rem 0;
   padding: 0;
+
+  &:first-child {
+    margin-top: 2rem;
+  }
 `;
 
 class Admin extends React.Component {
