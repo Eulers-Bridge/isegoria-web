@@ -4,7 +4,6 @@ const auth = (state = {
   email: '',
   loggedIn: false,
   password: '',
-  results: {}
 }, action) => {
   switch (action.type) {
     case AuthActions.LOGIN_SUCCESS:
