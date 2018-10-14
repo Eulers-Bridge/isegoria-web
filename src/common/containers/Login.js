@@ -1,10 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import HubspotForm from 'react-hubspot-form'
 import NavBar from '../components/NavBar';
 
 import * as AuthActions from '../actions/auth';

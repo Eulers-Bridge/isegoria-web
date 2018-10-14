@@ -5,7 +5,7 @@ const content = (state = {
   events: [],
   photos: []
 }, action) => {
-  const { articles, events, photos } = state;
+  // const { articles, events, photos } = state;
 
   switch (action.type) {
     case ContentActions.RECEIVE_ARTICLES:

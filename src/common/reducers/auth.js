@@ -4,9 +4,10 @@ const auth = (state = {
   email: '',
   loggedIn: false,
   password: '',
+  redirectUrl: '/admin',
   user: {}
 }, action) => {
-  const { email, loggedIn, password, user } = state
+  const { email, password, user } = state
 
   switch (action.type) {
     case AuthActions.LOGIN_SUCCESS:
@@ -31,7 +32,13 @@ const auth = (state = {
           user,
           action.payload
         )
-      }
+      };
+
+    case AuthActions.SET_REDIRECT_URL:
+      return {
+        ...state,
+        redirectUrl: action.payload
+      };
 
     default:
       return state;

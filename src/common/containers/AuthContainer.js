@@ -2,17 +2,24 @@ import React from 'react';
 
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import Route from 'react-router-dom/Route';
+import Switch from 'react-router-dom/Switch';
+import { push } from 'connected-react-router';
+
+import { setRedirectUrl } from '../actions/auth';
+
+import Admin from './Admin';
 
 class AuthContainer extends React.Component {
   componentDidMount() {
-    const { dispatch, currentURL, history, isLoggedIn } = this.props
+    const { dispatch, currentURL, isLoggedIn } = this.props
 
     if (!isLoggedIn) {
       // ##TODO##
       // set the current url/path for future redirection (we use a Redux action)
       // then redirect (we use a React Router method)
-      // dispatch(setRedirectUrl(currentURL))
-      history.replace("/login")
+      dispatch(setRedirectUrl(currentURL))
+      dispatch(push("/login"))
     }
   }
 
@@ -20,7 +27,12 @@ class AuthContainer extends React.Component {
     const { isLoggedIn } = this.props
 
     if (isLoggedIn) {
-      return this.props.children
+      return (
+        <Switch>
+          <Route path="/admin" component={Admin} />
+          <Route path="/fuckit" component={Admin} />
+        </Switch>
+      )
     } else {
       return null
     }
@@ -33,8 +45,8 @@ class AuthContainer extends React.Component {
 // the current position in the app.
 function mapStateToProps(state, ownProps) {
   return {
-    isLoggedIn: state.loggedIn,
-    currentURL: ownProps.location.pathname
+    isLoggedIn: state.auth.loggedIn,
+    currentURL: state.router.location.pathname
   }
 }
 

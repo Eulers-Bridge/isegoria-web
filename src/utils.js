@@ -35,6 +35,14 @@ const utils = Object.assign({},
     API_BASE
   },
   {
+    // Redirect the user to a 404 page
+    apiErrorRedirect: function () {
+      if (typeof document !== 'undefined') {
+        document.location = '/404/'
+      } else {
+        throw new HttpError(404, 'Page not found')
+      }
+    },
     // Make HTTP calls to fetch data, convenience wrappers for our wrapper
     apiFetch: function (path, init) {
       return rawFetch(`${API_BASE}/${path}`, init)

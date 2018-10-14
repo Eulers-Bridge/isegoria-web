@@ -5,6 +5,7 @@ export const ATTEMPT_LOGIN = 'ATTEMPT_LOGIN';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const RECEIVE_USER_DETAILS = 'RECEIVE_USER_DETAILS';
+export const SET_REDIRECT_URL = 'SET_REDIRECT_URL';
 
 
 export function attemptLogin (email, password) {
@@ -28,4 +29,8 @@ export function loginSuccess (results) {
 
 export function receiveUser (details) {
   return { type: RECEIVE_USER_DETAILS, payload: details }
+}
+
+export function setRedirectUrl (url) {
+  return { type: SET_REDIRECT_URL, payload: url }
 }

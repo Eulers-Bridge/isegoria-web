@@ -1,18 +1,20 @@
 import App from '../common/containers/App';
-import BrowserRouter from 'react-router-dom/BrowserRouter';
 import React from 'react';
 import { hydrate } from 'react-dom';
 import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'connected-react-router';
+import { createBrowserHistory } from 'history';
 import configureStore from '../common/store/configureStore';
 
-const store = configureStore(window.__INITIAL_STATE__);
+const history = createBrowserHistory();
+const store = configureStore(window.__INITIAL_STATE__, history);
 
 hydrate(
-  <BrowserRouter>
-    <Provider store={store}>
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
       <App />
-    </Provider>
-  </BrowserRouter>,
+    </ConnectedRouter>
+  </Provider>,
   document.getElementById('root')
 );
 
