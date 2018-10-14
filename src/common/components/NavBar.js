@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 import styled from 'styled-components';
 import logo from '../../../public/resources/logo_white.png';
 
@@ -16,13 +18,13 @@ const LogoImage = styled.img`
 
 const NavBar = () =>
   <nav id="navbar">
-    <a className="logo" href="/">
+    <Link className="logo" to="/">
       <LogoImage src={logo} alt="Isegoria Logo" />
       Isegoria<em>Beta</em>
-    </a>
-    <a href="/about">About Us</a>
-    <a href="/details">Details</a>
-    <a href="/contact">Contact</a>
+    </Link>
+    <Link to="/about">About Us</Link>
+    <Link to="/details">Details</Link>
+    <Link to="/contact">Contact</Link>
     <LoginButton
       className="button"
       href="/admin">
