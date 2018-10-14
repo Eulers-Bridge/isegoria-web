@@ -7,6 +7,7 @@ import express from 'express';
 import serialize from 'serialize-javascript';
 import { renderToString } from 'react-dom/server';
 import { ServerStyleSheet } from 'styled-components';
+import { createMemoryHistory } from 'history';
 
 import { fetchStaff } from '../common/api/staff';
 
@@ -20,17 +21,18 @@ server
   .get('/*', (req, res) => {
     fetchStaff(staff => {
       const context = {};
+      const history = createMemoryHistory()
       const store = configureStore({
         staff
-      });
+      }, history);
       const sheet = new ServerStyleSheet();
       const markup = renderToString(
         sheet.collectStyles(
-          <StaticRouter context={context} location={req.url}>
-            <Provider store={store}>
+          <Provider store={store}>
+            <StaticRouter context={context} location={req.url}>
               <App />
-            </Provider>
-          </StaticRouter>
+            </StaticRouter>
+          </Provider>
         )
       );
       const styleTags = sheet.getStyleTags();

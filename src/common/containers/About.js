@@ -64,16 +64,15 @@ class About extends React.Component {
     return (
       <Content className="content">
         <NavBar />
-      
+
         <header>
           <div className="container">
-            <logo />
             <strong><h1>Hi, we're Euler's Bridge.</h1></strong>
             <h2>We're a small software development team based in Melbourne, Australia; focused on introducing brilliant ideas to reality.</h2>
           </div>
         </header>
-      
-      
+
+
         <section className="page">
           <div className="container">
           <h1>Meet the team</h1>
@@ -99,11 +98,11 @@ class About extends React.Component {
                     </Profile>
                   );
                 })
-              }  
+              }
             </div>
           </div>
         </section>
-      
+
         <footer>
           <div className="container">
           <nav id="links">
@@ -114,7 +113,7 @@ class About extends React.Component {
           <p>&copy; Euler’s Bridge 2017</p>
           </div>
         </footer>
-      </Content>  
+      </Content>
     );
   }
 }
