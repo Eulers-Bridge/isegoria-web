@@ -9,6 +9,7 @@ import AdminNavBar from '../components/AdminNavBar';
 import AdminSideBar from '../components/AdminSideBar';
 import ContentItem from '../components/ContentItem';
 import ContentSetControls from '../components/ContentSetControls';
+import Loading from '../components/Loading';
 
 import { Content } from './Home';
 
@@ -55,11 +56,16 @@ class Admin extends React.Component {
               <ContentSet key={`cs-${contentType}`}>
                 <h2>Recent {contentType}</h2>
                 {
+                  content[contentType].length > 0 &&
                   content[contentType].map((item, i) =>
                     <ContentItem
                       item={item}
                       key={`ci-${contentType}-${i}`} />
                   )
+                }
+                {
+                  !(content[contentType].length > 0) &&
+                    <Loading />
                 }
                 <ContentSetControls contentType={contentType} />
               </ContentSet>
