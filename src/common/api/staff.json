@@ -27,7 +27,7 @@
     "name": "Yikai Gong",
     "bio": "Bio coming soon",
     "region": "china",
-    "title": "Backend and Web Engineer"
+    "title": "Engineering Manager"
   },
   {
     "name": "Charlie Eastaugh",
@@ -66,9 +66,15 @@
     "title": "Community Dynamics"
   },
   {
-    "name": "Patrick Carroll",
+    "name": "Esta Su",
     "bio": "Bio coming soon",
     "region": "australia",
-    "title": "Data Security Manager"
+    "title": "Android Developer"
+  },
+  {
+    "name": "Vivien Xu",
+    "bio": "Bio coming soon",
+    "region": "china",
+    "title": "Software Developer"
   }
 ]

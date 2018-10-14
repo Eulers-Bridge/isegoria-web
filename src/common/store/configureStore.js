@@ -1,17 +1,23 @@
 import { createStore, applyMiddleware, compose } from 'redux';
+import { connectRouter, routerMiddleware } from 'connected-react-router';
 import thunk from 'redux-thunk';
 import rootReducer from '../reducers';
 
-const composeEnhancers = 
+const composeEnhancers =
   process.env['NODE_ENV'] !== 'production' &&  typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
   ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
   : compose;
 
-const configureStore = initialState => {
+const configureStore = (initialState, history) => {
   const store = createStore(
-    rootReducer,
+    connectRouter(history)(rootReducer),
     initialState,
-    composeEnhancers(applyMiddleware(thunk))
+    composeEnhancers(
+      applyMiddleware(
+        routerMiddleware(history),
+        thunk
+      )
+    )
   );
 
   if (module.hot) {
