@@ -1,8 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
 import HubspotForm from 'react-hubspot-form'
 import NavBar from '../components/NavBar';
+
+import * as AuthActions from '../actions/auth';
 
 import { Content } from './Home';
 import './Home.css';
@@ -63,9 +68,11 @@ class Login extends React.Component {
   }
 
   login = event => {
+    const { dispatch } = this.props;
     const { email, password } = this.state;
     event.preventDefault();
-    console.log(email, password);
+
+    dispatch(AuthActions.attemptLogin(email, password));
   }
 
   render() {
@@ -74,7 +81,7 @@ class Login extends React.Component {
     return (
       <Content className="content">
         <NavBar />
-      
+
         <header>
           <div className="container">
             <logo />
@@ -83,7 +90,7 @@ class Login extends React.Component {
               onSubmit={this.login}>
               <div>
                 <label htmlFor="email">Email</label>
-                <input 
+                <input
                   name="email"
                   type="email"
                   value={email}
@@ -101,7 +108,7 @@ class Login extends React.Component {
             </FormContainer>
           </div>
         </header>
-      
+
         <footer>
           <div className="container">
           <nav id="links">
@@ -112,9 +119,15 @@ class Login extends React.Component {
           <p>&copy; Euler’s Bridge 2017</p>
           </div>
         </footer>
-      </Content>  
+      </Content>
     );
   }
 }
 
-export default Login;
+const mapStateToProps = state => ({
+  auth: state.auth,
+});
+
+export default connect(
+  mapStateToProps
+)(Login);
