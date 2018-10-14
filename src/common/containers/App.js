@@ -6,7 +6,9 @@ import Switch from 'react-router-dom/Switch';
 import Home from './Home';
 import About from './About';
 import Admin from './Admin';
+import AuthContainer from './AuthContainer';
 import Contact from './Contact';
+import Login from './Login';
 
 import './Fonts.css';
 import './App.css';
@@ -15,8 +17,12 @@ const App = () => (
   <Switch>
     <Route exact path="/" component={Home} />
     <Route path="/about" component={About} />
-    <Route path="/admin" component={Admin} />
     <Route path="/contact" component={Contact} />
+    <Route path="/login" component={Login} />
+
+    <Route component={AuthContainer}>
+      <Route path="/admin" component={Admin} />
+    </Route>
   </Switch>
 );
 
