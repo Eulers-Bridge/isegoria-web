@@ -27,20 +27,29 @@ const store = configureStore(Object.assign(
 ), history);
 
 let currentState = {
-  auth: {}
+  auth: {
+    user: {}
+  }
 };
-const unsubscribeUser = store.subscribe(() => {
+store.subscribe(() => {
   let prevState = currentState;
   currentState = store.getState();
 
-  const userChanged = currentState.auth.user !== prevState.auth.user
-  const hasPassword = !!currentState.auth.user.password
+  const { auth = {} } = currentState
+
+  const userChanged = auth.user !== prevState.auth.user
+  const hasPassword = auth.user && auth.user.password
   const localStorageAvailable = window && window.localStorage
+  const loggingOut = prevState.auth.loggedIn && !auth.loggedIn
 
   if (localStorageAvailable && userChanged && hasPassword) {
     window.localStorage.setItem(
       'u', JSON.stringify(currentState.auth.user)
     );
+  }
+
+  if (localStorageAvailable && loggingOut) {
+    window.localStorage.removeItem('u')
   }
 })
 

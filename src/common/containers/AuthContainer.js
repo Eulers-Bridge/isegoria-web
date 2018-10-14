@@ -43,7 +43,8 @@ class AuthContainer extends React.Component {
 function mapStateToProps(state, ownProps) {
   return {
     isLoggedIn: state.auth.loggedIn,
-    currentURL: state.router.location.pathname
+    currentURL: state.router.location.pathname,
+    user: state.auth.user
   }
 }
 

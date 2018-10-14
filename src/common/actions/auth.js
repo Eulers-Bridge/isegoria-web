@@ -1,9 +1,11 @@
 import authApi from '../api/auth';
 import { receiveArticles } from './content';
+import { push } from 'connected-react-router';
 
 export const ATTEMPT_LOGIN = 'ATTEMPT_LOGIN';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGOUT = 'LOGOUT';
 export const RECEIVE_USER_DETAILS = 'RECEIVE_USER_DETAILS';
 export const SET_REDIRECT_URL = 'SET_REDIRECT_URL';
 
@@ -23,8 +25,19 @@ export function attemptLogin (email, password) {
   ])
 }
 
+export function attemptLogout () {
+  return dispatch => Promise.all([
+    dispatch(logout()),
+    dispatch(push('/'))
+  ])
+}
+
 export function loginSuccess (results) {
   return { type: LOGIN_SUCCESS, payload: results }
+}
+
+export function logout () {
+  return { type: LOGOUT }
 }
 
 export function receiveUser (details) {

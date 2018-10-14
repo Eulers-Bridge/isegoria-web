@@ -1,12 +1,14 @@
 import * as AuthActions from '../actions/auth';
 
-const auth = (state = {
+const INITIAL_AUTH_STATE = {
   email: '',
   loggedIn: false,
   password: '',
-  redirectUrl: '/admin',
+  redirectUrl: '/',
   user: {}
-}, action) => {
+}
+
+const auth = (state = INITIAL_AUTH_STATE, action) => {
   const { email, password, user } = state
 
   switch (action.type) {
@@ -15,6 +17,9 @@ const auth = (state = {
         ...state,
         loggedIn: true
       };
+
+    case AuthActions.LOGOUT:
+      return INITIAL_AUTH_STATE;
 
     case AuthActions.RECEIVE_USER_DETAILS:
       return {
