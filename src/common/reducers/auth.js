@@ -4,14 +4,34 @@ const auth = (state = {
   email: '',
   loggedIn: false,
   password: '',
+  user: {}
 }, action) => {
+  const { email, loggedIn, password, user } = state
+
   switch (action.type) {
     case AuthActions.LOGIN_SUCCESS:
-      console.log(action.payload);
       return {
         ...state,
-        ...action.payload
+        loggedIn: true
       };
+
+    case AuthActions.RECEIVE_USER_DETAILS:
+      return {
+        ...state,
+
+        // ##TODON'T##
+        email: action.payload.email
+          ? action.payload.email
+          : email,
+        password: action.payload.password
+          ? action.payload.password
+          : password,
+
+        user: Object.assign({},
+          user,
+          action.payload
+        )
+      }
 
     default:
       return state;
