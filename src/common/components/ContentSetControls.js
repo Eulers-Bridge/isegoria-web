@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { Link } from 'react-router-dom';
+
 import IconList from '../../icons/bullet-list.svg'
 import IconPlus from '../../icons/button-plus.svg'
 
@@ -45,13 +47,13 @@ const ContentSetControls = ({contentType}) => {
   return (
     <StyledContentSetControls>
       <ContentSetControl>
-        <img src={IconList} />
-        <a href={`/admin/${contentType}`}>View all</a>
+        <img alt="" src={IconList} />
+        <Link to={`/admin/${contentType}`}>View all</Link>
       </ContentSetControl>
 
       <ContentSetControl>
-        <img src={IconPlus} />
-        <a href={`/admin/${contentType}/create`}>Add</a>
+        <img alt="" src={IconPlus} />
+        <Link to={`/admin/${contentType}/create`}>Add</Link>
       </ContentSetControl>
     </StyledContentSetControls>
   )

@@ -1,5 +1,5 @@
 import authApi from '../api/auth';
-import { receiveArticles } from './content';
+import { fetchArticles, fetchEvents, fetchPhotos } from './content';
 import { push } from 'connected-react-router';
 
 export const ATTEMPT_LOGIN = 'ATTEMPT_LOGIN';
@@ -15,13 +15,24 @@ export function attemptLogin (email, password) {
     // ##TODON'T##
     dispatch(receiveUser({ email, password })),
 
-    authApi.attemptLogin(results =>
-      Promise.all([
+    authApi.attemptLogin(results => {
+      const { user, userId } = results
+      const { institutionId } = user
+
+      // ##TODON'T##
+      const fetchArgs = { email, institutionId, password, userId }
+
+      return Promise.all([
+        console.log(results),
         dispatch(loginSuccess(results)),
         // ##TODO## :: think about moving
-        dispatch(receiveArticles(results.articles)),
-        dispatch(receiveUser(results.user))
-      ]), { email, password })
+        // dispatch(receiveArticles(results.articles)),
+        dispatch(receiveUser(results.user)),
+        dispatch(fetchArticles(fetchArgs)),
+        dispatch(fetchEvents(fetchArgs)),
+        dispatch(fetchPhotos(fetchArgs))
+      ])
+    }, { email, password })
   ])
 }
 

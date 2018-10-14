@@ -63,6 +63,7 @@ class Admin extends React.Component {
                   content[contentType].length > 0 &&
                   content[contentType].map((item, i) =>
                     <ContentItem
+                      contentType={contentType}
                       item={item}
                       key={`ci-${contentType}-${i}`} />
                   )

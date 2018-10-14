@@ -6,6 +6,13 @@ yarn
 yarn run start
 ```
 
+## TODO
+
+- Replace 404s for "no items found" in API with empty successful responses? Or at least delineate nicely in fetch
+- Rename "newsArticles" endpoints to "articles"
+
+## UPDATE THESE DOCS
+
 Proper notes to come...
 
 

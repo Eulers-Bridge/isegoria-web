@@ -58,31 +58,53 @@ const StyledCreator = styled.strong`
 `;
 
 const ContentItem = props => {
-  const { item } = props
+  const { contentType, item } = props
   const {
     creatorEmail,
-    creatorProfile,
+    creatorProfile = {},
     photos = []
   } = item
   const { givenName, familyName } = creatorProfile
 
-  const creatorName = `${givenName} ${familyName}`;
+  const creatorName = givenName && familyName
+    ? `${givenName} ${familyName}`
+    : givenName
+      ? `${givenName}`
+      : ``;
+
+  // ##TODO## :: Ditch plural
+  // ##TODO## :: Clean up, generally
+  const photoObject = contentType === 'photos'
+    ? item
+    : photos[0]
+      ? photos[0]
+      // ##TODO## :: Default / placeholder
+      : {}
+
+  const previewPhoto = photoObject.url
+  const previewAlt = photoObject.description
 
   return (
     <StyledContentItem>
       {
-        photos.length &&
+        previewPhoto &&
           <ContentItemImage>
             <img
-              alt={photos[0].description || ''}
-              src={photos[0].url} />
+              alt={previewAlt}
+              src={previewPhoto} />
           </ContentItemImage>
       }
       <ContentItemDetail>
-        <h4>{item.title}</h4>
-        <em>{utils.formatDate(item.date)}</em>
-        <p>{utils.truncate(item.content, 120)}</p>
-        <StyledCreator>Added by <a href={`mailto:${creatorEmail}`}>{creatorName}</a></StyledCreator>
+        <h4>{item.title || item.name}</h4>
+        <em>{utils.formatDate(item.date || item.created)}</em>
+        {
+          item.content &&
+            <p>{utils.truncate(item.content, 120)}</p>
+        }
+        {
+          creatorName &&
+            <StyledCreator>Added by <a href={`mailto:${creatorEmail}`}>{creatorName}</a></StyledCreator>
+        }
       </ContentItemDetail>
     </StyledContentItem>
   )

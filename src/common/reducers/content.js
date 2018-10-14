@@ -15,6 +15,20 @@ const content = (state = {
         articles: action.payload
       }
 
+    case ContentActions.RECEIVE_EVENTS:
+      return {
+        ...state,
+        // ##TODO## :: { id: data } and merge
+        events: action.payload
+      }
+
+    case ContentActions.RECEIVE_PHOTOS:
+      return {
+        ...state,
+        // ##TODO## :: { id: data } and merge
+        photos: action.payload
+      }
+
     default:
       return state;
   }

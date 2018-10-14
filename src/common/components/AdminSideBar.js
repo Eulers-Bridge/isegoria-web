@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { Link } from 'react-router-dom';
+
 const StyledAdminSideBar = styled.div`
   background: #e8e8eb;
   bottom: 0;
@@ -71,7 +73,7 @@ const AdminSideBar = ({ logout }) => {
 
             return (
               <AdminSideBarLink key={`asb-ct-${slug}`}>
-                <a href={`/admin/${slug}`}>{title}</a>
+                <Link to={`/admin/${slug}`}>{title}</Link>
               </AdminSideBarLink>
             );
           })
@@ -81,17 +83,17 @@ const AdminSideBar = ({ logout }) => {
       <AdminSidebarSection>
         <h2>Account</h2>
         <AdminSideBarLink>
-          <a href="/admin/account">Account</a>
+          <Link to="/admin/account">Account</Link>
         </AdminSideBarLink>
         <AdminSideBarLink>
-          <a href="/admin/profile">My Profile</a>
+          <Link to="/admin/profile">My Profile</Link>
         </AdminSideBarLink>
         <AdminSideBarLink>
-          <a
-            href="/admin"
+          <Link
+            to="/admin"
             onClick={logout}>
             Logout
-          </a>
+          </Link>
         </AdminSideBarLink>
       </AdminSidebarSection>
     </StyledAdminSideBar>
