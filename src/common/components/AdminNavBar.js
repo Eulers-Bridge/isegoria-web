@@ -29,18 +29,18 @@ const LogoImage = styled.img`
   margin-right: 8px;
 `
 
-const AdminNavBar = props =>
+const AdminNavBar = ({logout, title}) =>
   <NavBar>
     <a className="logo" href="/">
       <LogoImage src={logo} alt="Isegoria Logo" />
       Isegoria<em>Beta</em>
     </a>
 
-    <a href="/admin">Admin</a>
+    <a href="/admin">{title}</a>
 
     <LogoutButton
       className="button"
-      onClick={props.logout}>
+      onClick={logout}>
       Sign Out
     </LogoutButton>
   </NavBar>

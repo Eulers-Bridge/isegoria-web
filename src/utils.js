@@ -71,6 +71,22 @@ const utils = Object.assign({},
     generateBasicAuth: function (username, password) {
       const encodedCreds = btoa(`${username}:${password}`);
       return `Basic ${encodedCreds}`
+    },
+
+    // String formatting / output
+    formatDate: function (timestamp) {
+      const options = {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+      }
+
+      return new Date(timestamp).toLocaleDateString('en-US', options)
+    },
+
+    truncate: function (str, len) {
+      return `${str.slice(0, len)}${str.length > len ? '...' : ''}`
     }
   }
 );

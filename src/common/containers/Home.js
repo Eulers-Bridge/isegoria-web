@@ -143,7 +143,7 @@ class Home extends React.Component {
               <form action="//eulersbridge.us14.list-manage.com/subscribe/post?u=1a8308a6b9e7bab17571028d1&amp;id=2830217c18" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" className="validate" target="_blank" noValidate>
                 <input type="email" placeholder="Email address" id="mce-EMAIL" name="EMAIL" />
                 <button type="submit" name="subscribe" id="mc-embedded-subscribe">Subscribe</button>
-                <div style={{position: 'absolute', left: '-5000px'}} aria-hidden="true"><input type="text" name="b_1a8308a6b9e7bab17571028d1_2830217c18" tabIndex="-1" value="" /></div>
+                <div style={{position: 'absolute', left: '-5000px'}} aria-hidden="true"><input type="text" name="b_1a8308a6b9e7bab17571028d1_2830217c18" tabIndex="-1" defaultValue="" /></div>
               </form>
             </div>
           </div>
