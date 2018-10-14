@@ -82,7 +82,6 @@ class Login extends React.Component {
 
         <header>
           <div className="container">
-            <logo />
             <strong><h1>Sign in</h1></strong>
             <FormContainer
               onSubmit={this.login}>
