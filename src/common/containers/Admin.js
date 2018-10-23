@@ -38,6 +38,8 @@ const AdminContent = styled.div`
   }
 `;
 
+const AdminFeed = styled.div``;
+
 class Admin extends React.Component {
   render() {
     const { logout } = this.props;
@@ -51,12 +53,14 @@ class Admin extends React.Component {
           <AdminSideBar
             logout={logout} />
 
-          <Switch>
-            <Route path="/admin/articles/:id?" component={AdminArticle} />
-            <Route path="/admin/events/:id?" component={AdminEvent} />
-            <Route path="/admin/photos/:id?" component={AdminPhoto} />
-            <Route path="/" component={AdminDashboard} />
-          </Switch>
+          <AdminFeed>
+            <Switch>
+              <Route path="/admin/articles/:id?" component={AdminArticle} />
+              <Route path="/admin/events/:id?" component={AdminEvent} />
+              <Route path="/admin/photos/:id?" component={AdminPhoto} />
+              <Route path="/" component={AdminDashboard} />
+            </Switch>
+          </AdminFeed>
         </AdminContent>
       </Content>
     );
