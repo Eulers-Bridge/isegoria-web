@@ -67,8 +67,8 @@ class About extends React.Component {
 
         <header>
           <div className="container">
-            <strong><h1>Hi, we're Euler's Bridge.</h1></strong>
-            <h2>We're a small software development team based in Melbourne, Australia; focused on introducing brilliant ideas to reality.</h2>
+            <strong><h1>Hey! Ni Hao! Hola!</h1></strong>
+            <h2>Welcome to Euler’s Bridge, the company behind the platform. We’re committed to building connected and cooperative local networks.</h2>
           </div>
         </header>
 
@@ -76,7 +76,7 @@ class About extends React.Component {
         <section className="page">
           <div className="container">
           <h1>Meet the team</h1>
-          <p>Currently hiring! Shoot us an email if you're interested.</p>
+          <p>We’re a rich blend of talent, experiences, and cultures. Just like our home in Melbourne, Australia.</p>
             <hr />
             <div className="grid">
 
@@ -94,7 +94,9 @@ class About extends React.Component {
                       </h3>
                       <h5>{title}</h5>
                       <hr />
-                      <p>{bio}</p>
+                      <p dangerouslySetInnerHTML={{
+                        __html: bio
+                      }} />
                     </Profile>
                   );
                 })
