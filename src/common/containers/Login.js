@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import { connect } from 'react-redux';
 
+import Footer from '../components/Footer';
 import NavBar from '../components/NavBar';
 
 import * as AuthActions from '../actions/auth';
@@ -106,16 +107,7 @@ class Login extends React.Component {
           </div>
         </header>
 
-        <footer>
-          <div className="container">
-          <nav id="links">
-            <a href="/about">About Us</a>
-            <a href="/details">Details</a>
-          </nav>
-          <hr />
-          <p>&copy; Euler’s Bridge 2017</p>
-          </div>
-        </footer>
+        <Footer />
       </Content>
     );
   }

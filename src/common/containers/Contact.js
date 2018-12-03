@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 import HubspotForm from 'react-hubspot-form'
+
+import Footer from '../components/Footer';
 import NavBar from '../components/NavBar';
 
 import { Content } from './Home';
@@ -54,16 +56,7 @@ class Contact extends React.Component {
           </div>
         </section>
 
-        <footer>
-          <div className="container">
-          <nav id="links">
-            <a href="/about">About Us</a>
-            <a href="/details">Details</a>
-          </nav>
-          <hr />
-          <p>&copy; Euler’s Bridge 2017</p>
-          </div>
-        </footer>
+        <Footer />
       </Content>
     );
   }
