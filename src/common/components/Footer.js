@@ -34,27 +34,32 @@ const SocialLinks = styled.div`
 `;
 
 const Copyright = styled.p`
-  margin: 1em auto;
+  margin: 2em auto 1em auto;
   text-align: center;
 `;
 
-export default () =>
-  <StyledFooter>
-    <FooterNav>
-      <a href="/about">About Us</a>
-      <a href="/details">Details</a>
-    </FooterNav>
+export default () => {
+  const year = (new Date()).getFullYear();
 
-    <hr />
+  return (
+    <StyledFooter>
+      <FooterNav>
+        <a href="/about">About Us</a>
+        <a href="/details">Details</a>
+      </FooterNav>
 
-    <SocialLinks>
-      <a href="https://twitter.com/EulersBridge" target="_blank">
-        <img src={twitter} width="32" />
-      </a>
-      <a href="https://www.linkedin.com/company/euler's-bridge/" target="_blank">
-        <img src={linkedin} width="32" />
-      </a>
-    </SocialLinks>
+      <hr />
 
-    <Copyright>&copy; Euler’s Bridge 2017</Copyright>
-  </StyledFooter>
+      <SocialLinks>
+        <a href="https://twitter.com/EulersBridge" target="_blank" rel="noopener noreferrer">
+          <img src={twitter} width="32" alt="Twitter logo" />
+        </a>
+        <a href="https://www.linkedin.com/company/euler's-bridge/" target="_blank" rel="noopener noreferrer">
+          <img src={linkedin} width="32" alt="LinkedIn logo" />
+        </a>
+      </SocialLinks>
+
+      <Copyright>&copy; Euler’s Bridge {year}</Copyright>
+    </StyledFooter>
+  )
+}
