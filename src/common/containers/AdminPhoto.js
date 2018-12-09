@@ -18,7 +18,7 @@ class AdminPhoto extends React.Component {
     return (
       displayPhotos.map(photo =>
         <ContentItem
-          contentType="photos"
+          contentType="photo"
           item={photo}
           key={`c-photos-photo-${photo.nodeId}`} />
       )
@@ -28,7 +28,7 @@ class AdminPhoto extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    photos: state.content.photos
+    photos: state.content.photo
   }
 }
 

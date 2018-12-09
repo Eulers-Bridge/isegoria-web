@@ -18,7 +18,7 @@ class AdminPoll extends React.Component {
     return (
       displayPolls.map(poll =>
         <ContentItem
-          contentType="polls"
+          contentType="poll"
           item={poll}
           key={`c-polls-poll-${poll.pollId}`} />
       )
@@ -28,7 +28,7 @@ class AdminPoll extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    polls: state.content.polls
+    polls: state.content.poll
   }
 }
 

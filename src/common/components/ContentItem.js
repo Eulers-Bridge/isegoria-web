@@ -89,12 +89,10 @@ const ContentItem = props => {
   } = item
   const { givenName, familyName } = creatorProfile
 
-  // ##TODON'T##
-  const singularContentType = `${contentType}`.replace(/s$/gi, '').toLowerCase()
-  const idField = item[`${singularContentType}Id`]
-    ? `${singularContentType}Id`
+  const idField = item[`${contentType}Id`]
+    ? `${contentType}Id`
     : 'nodeId'
-  const itemLink = `/admin/${contentType}/${item[idField]}`
+  const itemLink = `/admin/${contentType}s/${item[idField]}`
 
   const creatorName = givenName && familyName
     ? `${givenName} ${familyName}`
@@ -102,9 +100,8 @@ const ContentItem = props => {
       ? `${givenName}`
       : ``;
 
-  // ##TODO## :: Ditch plural
   // ##TODO## :: Clean up, generally
-  const photoObject = contentType === 'photos'
+  const photoObject = contentType === 'photo'
     ? item
     : photos[0]
       ? photos[0]
@@ -143,7 +140,7 @@ const ContentItem = props => {
           item.pollOptions &&
             <ul>
               {item.pollOptions.map(pollOption =>
-                <ContentItemPollOption>
+                <ContentItemPollOption key={`ci-poll-${item.nodeId}-po-${pollOption.id}`}>
                   {pollOption.photo &&
                     <img
                       alt={pollOption.photo.description}
