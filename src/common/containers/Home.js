@@ -6,7 +6,12 @@ import NavBar from '../components/NavBar';
 
 import './Home.css';
 
-export const Content = styled.div``;
+export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  min-height: 100vh;
+`;
 
 class Home extends React.Component {
   render() {
