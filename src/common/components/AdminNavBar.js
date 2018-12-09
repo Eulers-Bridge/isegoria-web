@@ -3,20 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import logo from '../../../public/resources/logo_white.png';
 
-const NavBar = styled.nav`
-  position: absolute;
-  font-family: 'MuseoSansRounded';
-  background-color: #333;
-  height: 60px;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  z-index: 2;
-`
+import { StyledNavBar } from './NavBar';
 
 const LogoutButton = styled.button`
    nav & {
@@ -30,7 +17,7 @@ const LogoImage = styled.img`
 `
 
 const AdminNavBar = ({logout, title}) =>
-  <NavBar>
+  <StyledNavBar>
     <a className="logo" href="/">
       <LogoImage src={logo} alt="Isegoria Logo" />
       Isegoria<em>Beta</em>
@@ -43,6 +30,6 @@ const AdminNavBar = ({logout, title}) =>
       onClick={logout}>
       Sign Out
     </LogoutButton>
-  </NavBar>
+  </StyledNavBar>
 
 export default AdminNavBar;
