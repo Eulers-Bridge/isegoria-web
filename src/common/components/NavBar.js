@@ -18,6 +18,10 @@ export const StyledNavBar = styled.nav`
   justify-content: flex-start;
   z-index: 2;
 
+  &.dark {
+    background-color: #333;
+  }
+
   @media (max-width: 480px) {
     background-color: #333;
     a {

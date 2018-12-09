@@ -17,7 +17,7 @@ const LogoImage = styled.img`
 `
 
 const AdminNavBar = ({logout, title}) =>
-  <StyledNavBar>
+  <StyledNavBar className="dark">
     <a className="logo" href="/">
       <LogoImage src={logo} alt="Isegoria Logo" />
       Isegoria<em>Beta</em>
