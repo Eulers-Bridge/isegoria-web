@@ -11,6 +11,10 @@ import * as AuthActions from '../actions/auth';
 import { Content } from './Home';
 import './Home.css';
 
+const LoginHeader = styled.header`
+  flex: 1;
+`;
+
 const FormContainer = styled.form`
   display: flex;
   flex-direction: row;
@@ -81,7 +85,7 @@ class Login extends React.Component {
       <Content className="content">
         <NavBar />
 
-        <header>
+        <LoginHeader>
           <div className="container">
             <strong><h1>Sign in</h1></strong>
             <FormContainer
@@ -105,7 +109,7 @@ class Login extends React.Component {
               <input type="submit" value="Sign in" />
             </FormContainer>
           </div>
-        </header>
+        </LoginHeader>
 
         <Footer />
       </Content>

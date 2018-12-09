@@ -7,6 +7,7 @@ import twitter from '../../icons/twitter.svg';
 
 
 const StyledFooter = styled.footer`
+  margin-top: auto;
   padding: 1em;
 `;
 
