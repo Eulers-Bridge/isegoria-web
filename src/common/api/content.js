@@ -68,6 +68,29 @@ export default {
         response.json().then(data => cb(data.photos));
       })
       .catch(error => console.warn('Request failed: ', error))
+  },
+
+  fetchPolls (cb, args) {
+    const { institutionId } = args;
+    // ##TODON'T##
+    const { email, password } = args;
+    const authHeader = utils.generateBasicAuth(email, password);
+
+    return utils
+      .apiFetch(`polls/${institutionId}`, {
+        headers: {
+          'Authorization': authHeader,
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.status !== 200) {
+          console.log('Error fetching polls: ', response.status);
+          return;
+        }
+        response.json().then(data => cb(data.polls));
+      })
+      .catch(error => console.warn('Request failed: ', error))
   }
 }
 

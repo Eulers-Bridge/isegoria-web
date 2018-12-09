@@ -52,10 +52,10 @@ const CONTENT_TYPES = {
     slug: 'events',
     title: 'Events'
   },
-  // polls: {
-  //   slug: 'polls',
-  //   title: 'Polls'
-  // },
+  polls: {
+    slug: 'polls',
+    title: 'Polls'
+  },
   photos: {
     slug: 'photos',
     title: 'Photos'

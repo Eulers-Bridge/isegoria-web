@@ -3,7 +3,8 @@ import * as ContentActions from '../actions/content';
 const content = (state = {
   articles: [],
   events: [],
-  photos: []
+  photos: [],
+  polls: []
 }, action) => {
   // const { articles, events, photos } = state;
 
@@ -27,6 +28,13 @@ const content = (state = {
         ...state,
         // ##TODO## :: { id: data } and merge
         photos: action.payload
+      }
+
+    case ContentActions.RECEIVE_POLLS:
+      return {
+        ...state,
+        // ##TODO## :: { id: data } and merge
+        polls: action.payload
       }
 
     default:
