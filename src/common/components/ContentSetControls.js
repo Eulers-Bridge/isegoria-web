@@ -48,12 +48,12 @@ const ContentSetControls = ({contentType}) => {
     <StyledContentSetControls>
       <ContentSetControl>
         <img alt="" src={IconList} />
-        <Link to={`/admin/${contentType}`}>View all</Link>
+        <Link to={`/admin/${contentType}s`}>View all</Link>
       </ContentSetControl>
 
       <ContentSetControl>
         <img alt="" src={IconPlus} />
-        <Link to={`/admin/${contentType}/create`}>Add</Link>
+        <Link to={`/admin/${contentType}s/create`}>Add</Link>
       </ContentSetControl>
     </StyledContentSetControls>
   )

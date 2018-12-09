@@ -6,6 +6,8 @@ export const FETCH_EVENTS = 'FETCH_EVENTS ';
 export const RECEIVE_EVENTS  = 'RECEIVE_EVENTS ';
 export const FETCH_PHOTOS = 'FETCH_PHOTOS';
 export const RECEIVE_PHOTOS = 'RECEIVE_PHOTOS';
+export const FETCH_POLLS = 'FETCH_POLLS';
+export const RECEIVE_POLLS = 'RECEIVE_POLLS';
 
 export function fetchArticles (args) {
   return dispatch =>
@@ -43,4 +45,17 @@ export function fetchPhotos (args) {
 
 export function receivePhotos ( results ) {
   return { type: RECEIVE_PHOTOS, payload: results }
+}
+
+
+export function fetchPolls (args) {
+  return dispatch =>
+    contentApi.fetchPolls(
+      results => dispatch(receivePolls(results)),
+      args
+    )
+}
+
+export function receivePolls ( results ) {
+  return { type: RECEIVE_POLLS, payload: results }
 }

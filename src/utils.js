@@ -5,6 +5,25 @@ const API_BASE = {
   production: 'https://isegoria.app/api'
 }[process.env.NODE_ENV]
 
+const CONTENT_TYPES = {
+  article: {
+    slug: 'articles',
+    title: 'Articles'
+  },
+  event: {
+    slug: 'events',
+    title: 'Events'
+  },
+  photo: {
+    slug: 'photos',
+    title: 'Photos'
+  },
+  poll: {
+    slug: 'polls',
+    title: 'Polls'
+  }
+}
+
 class HttpError extends Error {
   constructor(status, message) {
     super(message)
@@ -32,7 +51,8 @@ const rawFetch = function (path, init) {
 
 const utils = Object.assign({},
   {
-    API_BASE
+    API_BASE,
+    CONTENT_TYPES
   },
   {
     // Redirect the user to a 404 page

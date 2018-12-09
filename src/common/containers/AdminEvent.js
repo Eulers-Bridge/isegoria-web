@@ -18,7 +18,7 @@ class AdminEvent extends React.Component {
     return (
       displayEvents.map(event =>
         <ContentItem
-          contentType="events"
+          contentType="event"
           item={event}
           key={`c-events-event-${event.eventId}`} />
       )
@@ -28,7 +28,7 @@ class AdminEvent extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    events: state.content.events
+    events: state.content.event
   }
 }
 

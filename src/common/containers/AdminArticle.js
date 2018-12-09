@@ -18,7 +18,7 @@ class AdminArticle extends React.Component {
     return (
       displayArticles.map(article =>
         <ContentItem
-          contentType="articles"
+          contentType="article"
           item={article}
           key={`c-articles-article-${article.articleId}`} />
       )
@@ -28,7 +28,7 @@ class AdminArticle extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    articles: state.content.articles
+    articles: state.content.article
   }
 }
 

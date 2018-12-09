@@ -5,6 +5,11 @@ import logo from '../../../public/resources/logo_white.png';
 
 import { StyledNavBar } from './NavBar';
 
+const StyledAdminNavBar = styled(StyledNavBar)`
+  background: #333;
+  position: fixed;
+`;
+
 const LogoutButton = styled.button`
    nav & {
     font-weight: normal;
@@ -17,7 +22,7 @@ const LogoImage = styled.img`
 `
 
 const AdminNavBar = ({logout, title}) =>
-  <StyledNavBar>
+  <StyledAdminNavBar>
     <a className="logo" href="/">
       <LogoImage src={logo} alt="Isegoria Logo" />
       Isegoria<em>Beta</em>
@@ -30,6 +35,6 @@ const AdminNavBar = ({logout, title}) =>
       onClick={logout}>
       Sign Out
     </LogoutButton>
-  </StyledNavBar>
+  </StyledAdminNavBar>
 
 export default AdminNavBar;
