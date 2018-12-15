@@ -105,6 +105,17 @@ const utils = Object.assign({},
       return new Date(timestamp).toLocaleDateString('en-US', options)
     },
 
+    formatDateToYMD: function (timestamp) {
+      const d = new Date(timestamp)
+      const month = `${d.getMonth() + 1}`
+      const displayMonth = month.length < 2 ? '0' + month : month
+      const day = `${d.getDate()}`
+      const displayDay = day.length < 2 ? '0' + day : day
+      const year = d.getFullYear()
+
+      return `${year}-${displayMonth}-${displayDay}`
+    },
+
     truncate: function (str, len) {
       return `${str.slice(0, len)}${str.length > len ? '...' : ''}`
     }

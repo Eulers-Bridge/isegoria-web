@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Formik, Field, Form } from 'formik';
+import * as Yup from 'yup';
+import utils from '../../utils';
 
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid'
@@ -45,22 +47,38 @@ const StyledGridItem = styled(GridItem)`
   width: 100%;
 `;
 
+const ArticleFormValidationSchema =
+  Yup.object().shape({
+    content: Yup.string()
+      .required('Required'),
+    creatorEmail: Yup.string()
+      .email('Invalid email')
+      .required('Required'),
+    date: Yup.date()
+      .required('Required'),
+    title: Yup.string()
+      .required('Required')
+  })
+
 const ArticleForm = ({article}) => {
+  const cleanArticle = {...article}
+  if (typeof cleanArticle.date === 'number') {
+    cleanArticle.date = utils.formatDateToYMD(cleanArticle.date)
+  }
+
   const leadImage = article && article.photos && article.photos.length
     ? article.photos[0]
     : null;
 
   return (
     <Formik
-      initialValues={article}
+      initialValues={cleanArticle}
       onSubmit={(values, actions) => {
         console.log(`Values: `, values);
         console.log(`Actions: `, actions);
       }}
+      validationSchema={ArticleFormValidationSchema}
       render={({
-        errors,
-        status,
-        touched,
         isSubmitting
       }) => (
         <StyledContentFormGrid
