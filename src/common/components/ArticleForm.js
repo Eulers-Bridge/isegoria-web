@@ -1,3 +1,4 @@
+// ##TODO## :: Generalize this slightly and use to generate for other types
 import React from 'react';
 import styled from 'styled-components';
 import { Formik, Field, Form } from 'formik';
@@ -109,7 +110,7 @@ const ArticleForm = ({article}) => {
           </StyledGridItem>
 
           <StyledGridItem>
-            <Field type="text" name="content" label="Body" multiline rows="20" component={TextField} />
+            <Field type="text" name="content" label="Body" multiline rows="16" component={TextField} />
           </StyledGridItem>
 
           <StyledGridItem>
