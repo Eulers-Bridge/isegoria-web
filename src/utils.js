@@ -71,22 +71,31 @@ const utils = Object.assign({},
       return rawFetch(path, init)
     },
     apiPost: function (path, init) {
-      return this.apiFetch(path, Object.assign(init, {
+      return this.apiFetch(path, Object.assign({
         method: 'post',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         }
-      }))
+      }, init))
+    },
+    apiPut: function (path, init) {
+      return this.apiFetch(path, Object.assign({
+        method: 'put',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      }, init))
     },
     externalPost: function (path, init) {
-      return this.externalFetch(path, Object.assign(init, {
+      return this.externalFetch(path, Object.assign({
         method: 'post',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         }
-      }))
+      }, init))
     },
     generateBasicAuth: function (username, password) {
       const encodedCreds = btoa(`${username}:${password}`);

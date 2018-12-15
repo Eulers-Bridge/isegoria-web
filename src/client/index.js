@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import { createBrowserHistory } from 'history';
 import configureStore from '../common/store/configureStore';
+import { SnackbarProvider } from 'notistack';
 
 import * as AuthActions from '../common/actions/auth';
 
@@ -63,7 +64,9 @@ if (localAuth.user && localAuth.user.password) {
 hydrate(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <App />
+      <SnackbarProvider maxSnack={3}>
+        <App />
+      </SnackbarProvider>
     </ConnectedRouter>
   </Provider>,
   document.getElementById('root')

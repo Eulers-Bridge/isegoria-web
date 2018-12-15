@@ -91,6 +91,40 @@ export default {
         response.json().then(data => cb(data.polls));
       })
       .catch(error => console.warn('Request failed: ', error))
+  },
+
+  updateOrCreateArticle(cb, args) {
+    const { article } = args
+    if (!process.env.NODE_ENV === 'production') {
+      console.log(`Updating: `, article)
+    }
+    // ##TODON'T## :: ID mapping is a bit awkward...
+    const { articleId: id } = article
+    const url = `newsArticle/${id ? id : ''}`
+    // ##TODO## :: Think about where to put this
+    article.date = (Date.parse(article.date))
+    // ##TODON'T##
+    const callFunction = (id ? utils.apiPost : utils.apiPost).bind(utils)
+    // ##TODON'T##
+    const { email, password } = article;
+    const authHeader = utils.generateBasicAuth(email, password);
+
+    return callFunction(url, {
+      body: JSON.stringify(article),
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': authHeader,
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(res => {
+        cb(res)
+      })
+      .catch(error => {
+        cb({
+          message: error,
+          status: 500
+        })
+      })
   }
 }
-

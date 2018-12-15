@@ -1,9 +1,12 @@
 // ##TODO## :: Generalize this slightly and use to generate for other types
 import React from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
 import utils from '../../utils';
+
+import * as ContentActions from '../actions/content'
 
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid'
@@ -11,6 +14,7 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 
 import { TextField } from 'formik-material-ui';
+import { withSnackbar} from 'notistack';
 
 const StyledContentFormGrid = styled(Grid)`
   color: #111;
@@ -61,7 +65,7 @@ const ArticleFormValidationSchema =
       .required('Required')
   })
 
-const ArticleForm = ({article}) => {
+const ArticleForm = ({article, auth, dispatch, enqueueSnackbar}) => {
   const cleanArticle = {...article}
   if (typeof cleanArticle.date === 'number') {
     cleanArticle.date = utils.formatDateToYMD(cleanArticle.date)
@@ -75,8 +79,18 @@ const ArticleForm = ({article}) => {
     <Formik
       initialValues={cleanArticle}
       onSubmit={(values, actions) => {
-        console.log(`Values: `, values);
-        console.log(`Actions: `, actions);
+        dispatch(ContentActions.postArticle(result => {
+          if (result.status !== 200) {
+            enqueueSnackbar(
+              `Error: ${result.message || 'Unable to save content'}`, {
+                variant: 'error'
+              }
+            )
+          } else {
+            enqueueSnackbar('Article saved!', { variant: 'success'})
+          }
+          actions.setSubmitting(false)
+        }, Object.assign({}, auth, values)))
       }}
       validationSchema={ArticleFormValidationSchema}
       render={({
@@ -90,7 +104,7 @@ const ArticleForm = ({article}) => {
           direction="column"
           spacing={32}
         >
-          <h2>Edit Article</h2>
+          <h2>{cleanArticle.articleId ? 'Edit' : 'Create'} Article</h2>
           { leadImage &&
               <StyledGridList
                 cellHeight={160}
@@ -102,22 +116,57 @@ const ArticleForm = ({article}) => {
           }
 
           <StyledGridItem>
-            <Field type="text" name="title" label="Title" component={TextField} />
+            <Field
+              label="Title"
+              name="title"
+              type="text"
+
+              component={TextField}
+            />
           </StyledGridItem>
 
           <StyledGridItem>
-            <Field type="email" name="creatorEmail" label="Email" component={TextField} />
+            <Field
+              label="Email"
+              name="creatorEmail"
+              type="email"
+
+              component={TextField}
+            />
           </StyledGridItem>
 
           <StyledGridItem>
-            <Field type="text" name="content" label="Body" multiline rows="16" component={TextField} />
+            <Field
+              label="Body"
+              name="content"
+              type="text"
+
+              component={TextField}
+              multiline
+              rows="16"
+            />
           </StyledGridItem>
 
           <StyledGridItem>
-            <Field type="date" name="date" label="Date" component={TextField} />
+            <Field
+              label="Date"
+              name="date"
+              type="date"
+
+              component={TextField}
+              InputLabelProps={{
+                shrink: true
+              }}
+            />
           </StyledGridItem>
 
-          <Button color="primary" type="submit" variant="contained" size="large" disabled={isSubmitting}>
+          <Button
+            color="primary"
+            disabled={isSubmitting}
+            size="large"
+            type="submit"
+            variant="contained"
+          >
             Save
           </Button>
         </StyledContentFormGrid>
@@ -126,4 +175,9 @@ const ArticleForm = ({article}) => {
   );
 }
 
-export default ArticleForm;
+const mapStateToProps = state => {
+  return {
+    auth: state.auth
+  }
+}
+export default connect(mapStateToProps)(withSnackbar(ArticleForm));

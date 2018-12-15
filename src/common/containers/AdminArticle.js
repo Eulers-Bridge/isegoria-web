@@ -17,9 +17,8 @@ class AdminArticle extends React.Component {
 
     // ##TODO## :: Loading state
     return (
-      id && displayArticles[0]
-        ? <ArticleForm
-            article={displayArticles[0]} />
+      id
+        ? <ArticleForm article={displayArticles[0] || null} />
         : displayArticles.map(article =>
           <ContentItem
             contentType="article"
