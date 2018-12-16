@@ -57,6 +57,19 @@ const ContentItemDetail = styled.div`
   }
 `;
 
+const ContentItemPollOption = styled.li`
+  display: inline-block;
+  list-style: none;
+  margin-right: 2em;
+  text-align: center;
+
+  img {
+    display: block;
+    margin: 1em;
+    max-width: 120px;
+  }
+`;
+
 const StyledCreator = styled.strong`
   color: #aaa;
   font-size: 1rem;
@@ -76,12 +89,10 @@ const ContentItem = props => {
   } = item
   const { givenName, familyName } = creatorProfile
 
-  // ##TODON'T##
-  const singularContentType = `${contentType}`.replace(/s$/gi, '').toLowerCase()
-  const idField = item[`${singularContentType}Id`]
-    ? `${singularContentType}Id`
+  const idField = item[`${contentType}Id`]
+    ? `${contentType}Id`
     : 'nodeId'
-  const itemLink = `/admin/${contentType}/${item[idField]}`
+  const itemLink = `/admin/${contentType}s/${item[idField]}`
 
   const creatorName = givenName && familyName
     ? `${givenName} ${familyName}`
@@ -89,11 +100,10 @@ const ContentItem = props => {
       ? `${givenName}`
       : ``;
 
-  // ##TODO## :: Ditch plural
   // ##TODO## :: Clean up, generally
-  const photoObject = contentType === 'photos'
+  const photoObject = contentType === 'photo'
     ? item
-    : photos[0]
+    : photos && photos[0]
       ? photos[0]
       // ##TODO## :: Default / placeholder
       : {}
@@ -116,13 +126,32 @@ const ContentItem = props => {
       <ContentItemDetail>
         <h4>
           <Link to={itemLink}>
-            {item.title || item.name}
+            {item.title || item.name || item.question}
           </Link>
         </h4>
-        <em>{utils.formatDate(item.date || item.created)}</em>
+        <em>{utils.formatDate(item.date || item.created || item.start)}</em>
         {
+          // ##TODO## :: "getChildContent" per type
           item.content &&
             <p>{utils.truncate(item.content, 120)}</p>
+        }
+        {
+          // ##TODON'T##
+          item.pollOptions &&
+            <ul>
+              {item.pollOptions.map(pollOption =>
+                <ContentItemPollOption key={`ci-poll-${item.nodeId}-po-${pollOption.id}`}>
+                  {pollOption.photo &&
+                    <img
+                      alt={pollOption.photo.description}
+                      src={pollOption.photo.url}
+                      title={pollOption.photo.title}
+                      width="120" />
+                  }
+                  {pollOption.txt}
+                </ContentItemPollOption>
+              )}
+            </ul>
         }
         {
           creatorName &&

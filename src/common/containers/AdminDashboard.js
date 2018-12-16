@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 import { connect } from 'react-redux';
 
+import utils from '../../utils';
+
 import ContentItem from '../components/ContentItem';
 import ContentSetControls from '../components/ContentSetControls';
 import Loading from '../components/Loading';
@@ -18,6 +20,7 @@ const ContentSet = styled.div`
 
 class AdminDashboard extends React.Component {
   render() {
+    const { CONTENT_TYPES } = utils;
     const { content } = this.props;
 
     if (!content || Object.keys(content).length <= 0) {
@@ -25,9 +28,9 @@ class AdminDashboard extends React.Component {
     }
 
     return (
-      Object.keys(content).map(contentType =>
+      Object.keys(CONTENT_TYPES).map(contentType =>
         <ContentSet key={`cs-${contentType}`}>
-          <h2>Recent {contentType}</h2>
+          <h2>Recent {contentType}s</h2>
           {
             content[contentType].length > 0 &&
             content[contentType].map((item, i) =>

@@ -12,9 +12,12 @@ import AdminArticle from './AdminArticle';
 import AdminDashboard from './AdminDashboard';
 import AdminEvent from './AdminEvent';
 import AdminPhoto from './AdminPhoto';
+import AdminPoll from './AdminPoll';
 
 import AdminNavBar from '../components/AdminNavBar';
 import AdminSideBar from '../components/AdminSideBar';
+
+import Typography from '@material-ui/core/Typography'
 
 import { Content } from './Home';
 
@@ -38,7 +41,9 @@ const AdminContent = styled.div`
   }
 `;
 
-const AdminFeed = styled.div``;
+const AdminFeed = styled.div`
+  width: 100%;
+`;
 
 class Admin extends React.Component {
   render() {
@@ -46,6 +51,8 @@ class Admin extends React.Component {
 
     return (
       <Content>
+        <Typography />
+
         <AdminNavBar
           logout={logout}
           title="Admin" />
@@ -58,6 +65,7 @@ class Admin extends React.Component {
               <Route path="/admin/articles/:id?" component={AdminArticle} />
               <Route path="/admin/events/:id?" component={AdminEvent} />
               <Route path="/admin/photos/:id?" component={AdminPhoto} />
+              <Route path="/admin/polls/:id?" component={AdminPoll} />
               <Route path="/" component={AdminDashboard} />
             </Switch>
           </AdminFeed>

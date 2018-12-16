@@ -1,7 +1,7 @@
 import React from 'react';
-// import styled from 'styled-components';
 import { connect } from 'react-redux';
 
+import ArticleForm from '../components/ArticleForm';
 import ContentItem from '../components/ContentItem';
 
 class AdminArticle extends React.Component {
@@ -15,20 +15,23 @@ class AdminArticle extends React.Component {
       ? articles.filter(article => `${article.articleId}` === id)
       : articles;
 
+    // ##TODO## :: Loading state
     return (
-      displayArticles.map(article =>
-        <ContentItem
-          contentType="articles"
-          item={article}
-          key={`c-articles-article-${article.articleId}`} />
-      )
+      id
+        ? <ArticleForm article={displayArticles[0] || null} />
+        : displayArticles.map(article =>
+          <ContentItem
+            contentType="article"
+            item={article}
+            key={`c-articles-article-${article.articleId}`} />
+        )
     );
   }
 }
 
 function mapStateToProps(state) {
   return {
-    articles: state.content.articles
+    articles: state.content.article
   }
 }
 

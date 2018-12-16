@@ -6,7 +6,37 @@ import NavBar from '../components/NavBar';
 
 import './Home.css';
 
-export const Content = styled.div``;
+export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  min-height: 100vh;
+`;
+
+// ##TODO## :: Still just a port of trashy old CSS
+export const PublicInput = styled.input`
+  border: none;
+  border-bottom: solid 2px #D8D8D8;
+  color: #6B7A8A;
+  display: inline-block;
+  font-size: 1em;
+  font-weight: 100;
+  margin-right: 8px;
+  margin-top: 2em;
+  outline: none;
+  padding: 0.75em 2em;
+  text-align: left;
+  text-decoration: none;
+  transition: 0.2s ease-in-out;
+  width: 70%;
+
+  &:focus {
+    background-color: rgba(126,126,126,0.2);
+    border-bottom: solid 2px rgba(126,126,126,1);
+    color: #fff;
+    transition: 0.2s ease-in-out;
+  }
+`;
 
 class Home extends React.Component {
   render() {
@@ -142,9 +172,9 @@ class Home extends React.Component {
             as well as any important updates related to our grand launch.</h2>
             <div className="grid">
               <form action="//eulersbridge.us14.list-manage.com/subscribe/post?u=1a8308a6b9e7bab17571028d1&amp;id=2830217c18" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" className="validate" target="_blank" noValidate>
-                <input type="email" placeholder="Email address" id="mce-EMAIL" name="EMAIL" />
+                <PublicInput type="email" placeholder="Email address" id="mce-EMAIL" name="EMAIL" />
                 <button type="submit" name="subscribe" id="mc-embedded-subscribe">Subscribe</button>
-                <div style={{position: 'absolute', left: '-5000px'}} aria-hidden="true"><input type="text" name="b_1a8308a6b9e7bab17571028d1_2830217c18" tabIndex="-1" defaultValue="" /></div>
+                <div style={{position: 'absolute', left: '-5000px'}} aria-hidden="true"><PublicInput type="text" name="b_1a8308a6b9e7bab17571028d1_2830217c18" tabIndex="-1" defaultValue="" /></div>
               </form>
             </div>
           </div>

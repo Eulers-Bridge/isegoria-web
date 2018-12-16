@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import utils from '../../utils';
+
 import { Link } from 'react-router-dom';
 
 const StyledAdminSideBar = styled.div`
@@ -42,27 +44,9 @@ const AdminSideBarLink = styled.li`
   }
 `;
 
-// ##TODO## :: Move to somewhere good and import
-const CONTENT_TYPES = {
-  articles: {
-    slug: 'articles',
-    title: 'Articles'
-  },
-  events: {
-    slug: 'events',
-    title: 'Events'
-  },
-  // polls: {
-  //   slug: 'polls',
-  //   title: 'Polls'
-  // },
-  photos: {
-    slug: 'photos',
-    title: 'Photos'
-  }
-}
-
 const AdminSideBar = ({ logout }) => {
+  const { CONTENT_TYPES } = utils;
+
   return (
     <StyledAdminSideBar>
       <AdminSidebarSection>
