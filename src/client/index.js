@@ -7,6 +7,9 @@ import { createBrowserHistory } from 'history';
 import configureStore from '../common/store/configureStore';
 import { SnackbarProvider } from 'notistack';
 
+import { create } from 'jss';
+import { StylesProvider, jssPreset } from '@material-ui/styles';
+
 import * as AuthActions from '../common/actions/auth';
 
 const history = createBrowserHistory();
@@ -61,11 +64,19 @@ if (localAuth.user && localAuth.user.password) {
   );
 }
 
+const jss = create({
+  ...jssPreset(),
+  // We define a custom insertion point that JSS will look for injecting the styles in the DOM.
+  insertionPoint: document.getElementById('jss-insertion-point')
+});
+
 hydrate(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <SnackbarProvider maxSnack={3}>
-        <App />
+        <StylesProvider jss={jss}>
+          <App />
+        </StylesProvider>
       </SnackbarProvider>
     </ConnectedRouter>
   </Provider>,

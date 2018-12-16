@@ -133,5 +133,50 @@ export default {
           status: 500
         })
       })
+  },
+
+  updateOrCreatePoll(cb, args) {
+    const { poll } = args
+    if (process.env.NODE_ENV !== 'production') {
+      console.log(`Updating: `, poll)
+    }
+    // ##TODON'T## :: ID mapping is a bit awkward...
+    const { nodeId: id, user } = poll
+    const { institutionId, userId } = user
+    const url = `poll/${id ? id : ''}`
+    // ##TODO## :: Think about where to put this
+    poll.start = (Date.parse(poll.start))
+    const pollData = {
+      question: poll.question,
+      start: poll.start,
+      duration: 10080000,
+      ownerId: institutionId,
+      creatorId: userId,
+      pollOptions: poll.pollOptions
+    }
+
+    // ##TODON'T##
+    const callFunction = (id ? utils.apiPut : utils.apiPost).bind(utils)
+    // ##TODON'T##
+    const { email, password } = JSON.parse(localStorage.getItem('u'));
+    const authHeader = utils.generateBasicAuth(email, password);
+
+    return callFunction(url, {
+      body: JSON.stringify(pollData),
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': authHeader,
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(res => {
+        cb(res)
+      })
+      .catch(error => {
+        cb({
+          message: error,
+          status: 500
+        })
+      })
   }
 }

@@ -30,6 +30,15 @@ export function postArticle (cb, article) {
     // }, { article })
 }
 
+export function postPoll (cb, poll) {
+  return dispatch =>
+    contentApi.updateOrCreatePoll(result => {
+      dispatch(receiveContentUpdateResult(result))
+      cb(result)
+    }, { poll })
+    // ##TODO## :: Use Redux for cb equivalent
+}
+
 export function receiveArticles ( results ) {
   return { type: RECEIVE_ARTICLES, payload: results }
 }
