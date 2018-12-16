@@ -2,6 +2,7 @@ import contentApi from '../api/content';
 
 export const FETCH_ARTICLES = 'FETCH_ARTICLES';
 export const RECEIVE_ARTICLES = 'RECEIVE_ARTICLES';
+export const RECEIVE_CONTENT_UPDATE_RESULT = 'RECEIVE_CONTENT_UPDATE_RESULT';
 export const FETCH_EVENTS = 'FETCH_EVENTS ';
 export const RECEIVE_EVENTS  = 'RECEIVE_EVENTS ';
 export const FETCH_PHOTOS = 'FETCH_PHOTOS';
@@ -17,8 +18,33 @@ export function fetchArticles (args) {
     )
 }
 
+export function postArticle (cb, article) {
+  return dispatch =>
+    contentApi.updateOrCreateArticle(result => {
+      dispatch(receiveContentUpdateResult(result))
+      cb(result)
+    }, { article })
+    // ##TODO## :: Use Redux for cb equivalent
+    // contentApi.updateOrCreateArticle(result => {
+    //   dispatch(receiveContentUpdateResult(result))
+    // }, { article })
+}
+
+export function postPoll (cb, poll) {
+  return dispatch =>
+    contentApi.updateOrCreatePoll(result => {
+      dispatch(receiveContentUpdateResult(result))
+      cb(result)
+    }, { poll })
+    // ##TODO## :: Use Redux for cb equivalent
+}
+
 export function receiveArticles ( results ) {
   return { type: RECEIVE_ARTICLES, payload: results }
+}
+
+export function receiveContentUpdateResult (result) {
+  return { type: RECEIVE_CONTENT_UPDATE_RESULT, payload: result}
 }
 
 

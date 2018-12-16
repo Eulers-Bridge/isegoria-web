@@ -71,22 +71,31 @@ const utils = Object.assign({},
       return rawFetch(path, init)
     },
     apiPost: function (path, init) {
-      return this.apiFetch(path, Object.assign(init, {
+      return this.apiFetch(path, Object.assign({
         method: 'post',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         }
-      }))
+      }, init))
+    },
+    apiPut: function (path, init) {
+      return this.apiFetch(path, Object.assign({
+        method: 'put',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      }, init))
     },
     externalPost: function (path, init) {
-      return this.externalFetch(path, Object.assign(init, {
+      return this.externalFetch(path, Object.assign({
         method: 'post',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
         }
-      }))
+      }, init))
     },
     generateBasicAuth: function (username, password) {
       const encodedCreds = btoa(`${username}:${password}`);
@@ -103,6 +112,17 @@ const utils = Object.assign({},
       }
 
       return new Date(timestamp).toLocaleDateString('en-US', options)
+    },
+
+    formatDateToYMD: function (timestamp) {
+      const d = new Date(timestamp)
+      const month = `${d.getMonth() + 1}`
+      const displayMonth = month.length < 2 ? '0' + month : month
+      const day = `${d.getDate()}`
+      const displayDay = day.length < 2 ? '0' + day : day
+      const year = d.getFullYear()
+
+      return `${year}-${displayMonth}-${displayDay}`
     },
 
     truncate: function (str, len) {

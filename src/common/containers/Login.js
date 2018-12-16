@@ -8,7 +8,7 @@ import NavBar from '../components/NavBar';
 
 import * as AuthActions from '../actions/auth';
 
-import { Content } from './Home';
+import { Content, PublicInput } from './Home';
 import './Home.css';
 
 const LoginHeader = styled.header`
@@ -92,7 +92,7 @@ class Login extends React.Component {
               onSubmit={this.login}>
               <div>
                 <label htmlFor="email">Email</label>
-                <input
+                <PublicInput
                   name="email"
                   type="email"
                   value={email}
@@ -100,13 +100,13 @@ class Login extends React.Component {
               </div>
               <div>
                 <label htmlFor="password">Password</label>
-                <input
+                <PublicInput
                   name="password"
                   onChange={this._handleChange}
                   type="password"
                   value={password} />
               </div>
-              <input type="submit" value="Sign in" />
+              <PublicInput type="submit" value="Sign in" />
             </FormContainer>
           </div>
         </LoginHeader>
