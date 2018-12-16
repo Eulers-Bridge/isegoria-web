@@ -104,7 +104,7 @@ export default {
     // ##TODO## :: Think about where to put this
     article.date = (Date.parse(article.date))
     // ##TODON'T##
-    const callFunction = (id ? utils.apiPost : utils.apiPost).bind(utils)
+    const callFunction = (id ? utils.apiPut : utils.apiPost).bind(utils)
     // ##TODON'T##
     const { email, password } = article;
     const authHeader = utils.generateBasicAuth(email, password);
