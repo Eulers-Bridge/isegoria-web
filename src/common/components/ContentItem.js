@@ -103,7 +103,7 @@ const ContentItem = props => {
   // ##TODO## :: Clean up, generally
   const photoObject = contentType === 'photo'
     ? item
-    : photos[0]
+    : photos && photos[0]
       ? photos[0]
       // ##TODO## :: Default / placeholder
       : {}
