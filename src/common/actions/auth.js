@@ -27,7 +27,10 @@ export function attemptLogin (email, password) {
         dispatch(loginSuccess(results)),
         // ##TODO## :: think about moving
         // dispatch(receiveArticles(results.articles)),
-        dispatch(receiveUser(results.user)),
+        dispatch(receiveUser(Object.assign({},
+          results.user,
+          { userId: results.userId }
+        ))),
         dispatch(fetchArticles(fetchArgs)),
         dispatch(fetchEvents(fetchArgs)),
         dispatch(fetchPhotos(fetchArgs)),
