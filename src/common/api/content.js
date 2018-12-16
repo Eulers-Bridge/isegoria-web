@@ -95,22 +95,29 @@ export default {
 
   updateOrCreateArticle(cb, args) {
     const { article } = args
-    if (!process.env.NODE_ENV === 'production') {
+    if (process.env.NODE_ENV !== 'production') {
       console.log(`Updating: `, article)
     }
     // ##TODON'T## :: ID mapping is a bit awkward...
-    const { articleId: id } = article
+    const { articleId: id, user: { institutionId } } = article
+    // ##TODON'T##
+    const { email, password } = JSON.parse(localStorage.getItem('u'));
+
     const url = `newsArticle/${id ? id : ''}`
     // ##TODO## :: Think about where to put this
     article.date = (Date.parse(article.date))
     // ##TODON'T##
     const callFunction = (id ? utils.apiPut : utils.apiPost).bind(utils)
-    // ##TODON'T##
-    const { email, password } = article;
     const authHeader = utils.generateBasicAuth(email, password);
 
     return callFunction(url, {
-      body: JSON.stringify(article),
+      body: JSON.stringify({
+        creatorEmail: article.creatorEmail,
+        date: article.date,
+        content: article.content,
+        title: article.title,
+        institutionId: institutionId
+      }),
       headers: {
         'Accept': 'application/json',
         'Authorization': authHeader,
