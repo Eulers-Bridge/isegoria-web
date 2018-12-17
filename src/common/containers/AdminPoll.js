@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import ContentItem from '../components/ContentItem';
 import PollForm from '../components/PollForm';
 
+import { StyledAddIcon, StyledFab } from './AdminArticle';
+
 class AdminPoll extends React.Component {
   render() {
     const {
@@ -19,12 +21,25 @@ class AdminPoll extends React.Component {
     return (
       id
         ? <PollForm poll={displayPolls[0] || null} />
-        : displayPolls.map(poll =>
-          <ContentItem
-            contentType="poll"
-            item={poll}
-            key={`c-polls-poll-${poll.nodeId}`} />
-        )
+        : [
+            displayPolls.map(poll =>
+            <ContentItem
+              contentType="poll"
+              item={poll}
+              key={`c-polls-poll-${poll.nodeId}`} />
+          ),
+          <StyledFab
+            aria-label="Add"
+            color="primary"
+            onClick={
+              () => window.location.href += '/create'
+            }
+            variant="extended"
+          >
+            <StyledAddIcon />
+            Add Poll
+          </StyledFab>
+        ]
     );
   }
 }
