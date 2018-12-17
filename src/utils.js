@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch';
 
 const API_BASE = {
-  development: 'http://localhost:8080/dbinterface/api',
+  development: 'http://localhost:8080/api',
   production: 'https://isegoria.app/api'
 }[process.env.NODE_ENV]
 
