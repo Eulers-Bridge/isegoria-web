@@ -80,14 +80,15 @@ const ArticleForm = ({article, auth, dispatch, enqueueSnackbar}) => {
       initialValues={cleanArticle}
       onSubmit={(values, actions) => {
         dispatch(ContentActions.postArticle(result => {
-          if (result.status !== 200) {
+          if (result.status < 200 || result.status >= 300) {
             enqueueSnackbar(
               `Error: ${result.message || 'Unable to save content'}`, {
                 variant: 'error'
               }
             )
           } else {
-            enqueueSnackbar('Article saved!', { variant: 'success'})
+            enqueueSnackbar('Article saved!', { variant: 'success'});
+            setTimeout(() => window.location.href = '/admin/articles', 2000);
           }
           actions.setSubmitting(false)
         }, Object.assign({}, auth, values)))
