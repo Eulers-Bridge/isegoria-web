@@ -80,6 +80,16 @@ const StyledCreator = styled.strong`
   }
 `;
 
+const PollOption = styled.p`
+  && {
+    margin-bottom: 0.5rem;
+  }
+`;
+
+const VoteCount = styled.p`
+  opacity: 0.5;
+`;
+
 const ContentItem = props => {
   const { contentType, item } = props
   const {
@@ -148,7 +158,8 @@ const ContentItem = props => {
                       title={pollOption.photo.title}
                       width="120" />
                   }
-                  {pollOption.txt}
+                  <PollOption>{pollOption.txt}</PollOption>
+                  <VoteCount>{pollOption.numOfVoters} votes</VoteCount>
                 </ContentItemPollOption>
               )}
             </ul>

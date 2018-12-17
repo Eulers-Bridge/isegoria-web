@@ -109,14 +109,15 @@ const PollForm = ({auth, dispatch, enqueueSnackbar, poll}) => {
       initialValues={cleanPoll}
       onSubmit={(values, actions) => {
         return dispatch(ContentActions.postPoll(result => {
-          if (result.status !== 200) {
+          if (result.status < 200 || result.status >= 300) {
             enqueueSnackbar(
               `Error: ${result.message || 'Unable to save content'}`, {
                 variant: 'error'
               }
             )
           } else {
-            enqueueSnackbar('Poll saved!', { variant: 'success'})
+            enqueueSnackbar('Poll saved!', { variant: 'success'});
+            setTimeout(() => window.location.href = '/admin/polls', 2000);
           }
           actions.setSubmitting(false)
         }, Object.assign({}, auth, values)))
@@ -226,7 +227,7 @@ const PollForm = ({auth, dispatch, enqueueSnackbar, poll}) => {
                           </StyledListItemIcon>
                       }
                       <ListItemText>
-                        <Grid container spacing="16">
+                        <Grid container spacing={16}>
                           <StyledGridItem>
                             <Field
                               label="Answer"

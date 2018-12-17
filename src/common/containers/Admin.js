@@ -17,8 +17,6 @@ import AdminPoll from './AdminPoll';
 import AdminNavBar from '../components/AdminNavBar';
 import AdminSideBar from '../components/AdminSideBar';
 
-import Typography from '@material-ui/core/Typography'
-
 import { Content } from './Home';
 
 // ##TODO## :: Migrate to styled-components
@@ -51,8 +49,6 @@ class Admin extends React.Component {
 
     return (
       <Content>
-        <Typography />
-
         <AdminNavBar
           logout={logout}
           title="Admin" />
