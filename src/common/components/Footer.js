@@ -35,7 +35,9 @@ const SocialLinks = styled.div`
 `;
 
 const Copyright = styled.p`
+  font-size: 80%;
   margin: 2em auto 1em auto;
+  opacity: 0.5;
   text-align: center;
 `;
 
@@ -60,7 +62,7 @@ export default () => {
         </a>
       </SocialLinks>
 
-      <Copyright>&copy; Euler’s Bridge {year}</Copyright>
+      <Copyright>&copy; Euler’s Bridge {year}. Registered Trademark Isegoria. All Rights Reserved</Copyright>
     </StyledFooter>
   )
 }
