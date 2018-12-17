@@ -62,7 +62,7 @@ export default () => {
         </a>
       </SocialLinks>
 
-      <Copyright>&copy; Euler’s Bridge {year}. Registered Trademark Isegoria. All Rights Reserved</Copyright>
+      <Copyright>&copy; Euler’s Bridge {year}. ® Isegoria. All Rights Reserved</Copyright>
     </StyledFooter>
   )
 }
