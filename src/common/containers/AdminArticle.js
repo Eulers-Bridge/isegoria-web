@@ -46,6 +46,7 @@ class AdminArticle extends React.Component {
           <StyledFab
             aria-label="Add"
             color="primary"
+            key="add-article"
             onClick={
               () => window.location.href += '/create'
             }

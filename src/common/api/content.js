@@ -135,6 +135,50 @@ export default {
       })
   },
 
+  updateOrCreateEvent(cb, args) {
+    const { event } = args
+    if (process.env.NODE_ENV !== 'production') {
+      console.log(`Updating: `, event)
+    }
+    // ##TODON'T## :: ID mapping is a bit awkward...
+    const { eventId: id, user: { institutionId } } = event
+    // ##TODON'T##
+    const { email, password } = JSON.parse(localStorage.getItem('u'));
+
+    const url = `event/${id ? id : ''}`
+    // ##TODO## :: Think about where to put this
+    event.starts = (Date.parse(event.starts))
+    event.ends = (Date.parse(event.ends))
+    // ##TODON'T##
+    const callFunction = (id ? utils.apiPut : utils.apiPost).bind(utils)
+    const authHeader = utils.generateBasicAuth(email, password);
+
+    return callFunction(url, {
+      body: JSON.stringify({
+        organizerEmail: event.organizerEmail,
+        starts: event.starts,
+        ends: event.ends,
+        description: event.description,
+        name: event.name,
+        institutionId: institutionId
+      }),
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': authHeader,
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(res => {
+        cb(res)
+      })
+      .catch(error => {
+        cb({
+          message: error,
+          status: 500
+        })
+      })
+  },
+
   updateOrCreatePoll(cb, args) {
     const { poll } = args
     if (process.env.NODE_ENV !== 'production') {
