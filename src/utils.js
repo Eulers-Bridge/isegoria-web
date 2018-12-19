@@ -5,6 +5,7 @@ const API_BASE = {
   production: 'https://isegoria.app/api'
 }[process.env.NODE_ENV]
 
+// ##TODO## :: Merge
 const CONTENT_TYPES = {
   article: {
     slug: 'articles',
@@ -21,6 +22,20 @@ const CONTENT_TYPES = {
   poll: {
     slug: 'polls',
     title: 'Polls'
+  }
+}
+const ELECTION_TYPES = {
+  candidate: {
+    slug: 'candidates',
+    title: 'Candidates'
+  },
+  election: {
+    slug: 'elections',
+    title: 'Elections'
+  },
+  ticket: {
+    slug: 'tickets',
+    title: 'Tickets'
   }
 }
 
@@ -52,7 +67,8 @@ const rawFetch = function (path, init) {
 const utils = Object.assign({},
   {
     API_BASE,
-    CONTENT_TYPES
+    CONTENT_TYPES,
+    ELECTION_TYPES
   },
   {
     // Redirect the user to a 404 page

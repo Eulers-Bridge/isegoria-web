@@ -35,7 +35,7 @@ class Contact extends React.Component {
       <Content className="content">
         <NavBar />
 
-        <header>
+        <header className="public-header">
           <div className="container">
             <strong><h1>Hi, we're Euler's Bridge.</h1></strong>
             <h2>We're a small software development team based in Melbourne, Australia; focused on introducing brilliant ideas to reality.</h2>

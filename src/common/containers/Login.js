@@ -85,7 +85,7 @@ class Login extends React.Component {
       <Content className="content">
         <NavBar />
 
-        <LoginHeader>
+        <LoginHeader className="public-header">
           <div className="container">
             <strong><h1>Sign in</h1></strong>
             <FormContainer

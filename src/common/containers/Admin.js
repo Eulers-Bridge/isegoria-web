@@ -14,8 +14,7 @@ import AdminEvent from './AdminEvent';
 import AdminPhoto from './AdminPhoto';
 import AdminPoll from './AdminPoll';
 
-import AdminNavBar from '../components/AdminNavBar';
-import AdminSideBar from '../components/AdminSideBar';
+import AdminNav from '../components/AdminNav';
 
 import { Content } from './Home';
 
@@ -26,10 +25,10 @@ import './App.css';
 const AdminContent = styled.div`
   display: flex;
   flex-direction: row;
-  padding-left: 160px; /* ##TODO## :: Make export in nav? Do better? */
+  padding-left: 240px; /* ##TODO## :: Make export in nav? Do better? */
   padding-top: 60px; /* ##TODO## :: Make export in nav */
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 960px) {
     padding-left: 0;
   }
 
@@ -49,13 +48,10 @@ class Admin extends React.Component {
 
     return (
       <Content>
-        <AdminNavBar
-          logout={logout}
-          title="Admin" />
-        <AdminContent>
-          <AdminSideBar
-            logout={logout} />
+        <AdminNav
+          logout={logout} />
 
+        <AdminContent>
           <AdminFeed>
             <Switch>
               <Route path="/admin/articles/:id?" component={AdminArticle} />

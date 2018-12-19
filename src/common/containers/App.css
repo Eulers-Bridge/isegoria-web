@@ -75,14 +75,14 @@ a {
   min-height: 100vh;
 }
 
-header {
+header.public-header {
   display: block;
   position: relative;
   color: white;
   overflow: hidden;
 }
 
-header .container {
+header.public-header .container {
   position: relative;
   z-index: 2;
   color: #ffffff;
@@ -90,7 +90,7 @@ header .container {
   min-height: 400px;
 }
 
-header:before {
+header.public-header:before {
   content:"";
   position: absolute;
   top: -10px;
@@ -112,7 +112,7 @@ header:before {
   z-index: 1;
 }
 
-header h2 {
+header.public-header h2 {
   max-width: 640px;
 }
 
@@ -132,7 +132,7 @@ button, a.button {
   margin-right: 16px;
 }
 
-header button, header a.button {
+header.public-header button, header.public-header a.button {
   background-color: rgba(37,27,37,0.5);
   -webkit-backdrop-filter: saturate(300%) brightness(100%) blur(20px);
   -moz-backdrop-filter: saturate(300%) brightness(100%) blur(20px);
