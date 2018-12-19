@@ -16,9 +16,12 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import BallotIcon from '@material-ui/icons/Ballot';
 import BookIcon from '@material-ui/icons/Book';
@@ -63,6 +66,10 @@ const Logo = styled.a`
 
 const LogoImage = styled.img`
   margin-right: 16px;
+`;
+
+const ProfileMenuWrapper = styled.div`
+  margin-left: auto;
 `;
 
 const StyledAppBar = styled(AppBar)`
@@ -152,11 +159,20 @@ const generateMenuItem = (contentType, title, clickHandler) => (
 
 class AdminNav extends React.Component {
   state = {
+    anchorEl: null,
     mobileOpen: false
   };
 
   handleDrawerToggle = () => {
     this.setState(state => ({ mobileOpen: !state.mobileOpen }));
+  };
+
+  handleProfileMenu = event => {
+    this.setState({ anchorEl: event.currentTarget });
+  };
+
+  handleProfileMenuClose = () => {
+    this.setState({ anchorEl: null });
   };
 
   navigateTo = url => {
@@ -166,10 +182,14 @@ class AdminNav extends React.Component {
 
   render() {
     const { logout } = this.props;
+    const { anchorEl } = this.state;
+
     const {
       CONTENT_TYPES,
       ELECTION_TYPES
     } = utils;
+
+    const profileMenuOpen = !!anchorEl;
 
     const drawer = (
       <DrawerWrapper>
@@ -219,6 +239,37 @@ class AdminNav extends React.Component {
       </DrawerWrapper>
     );
 
+    const profileMenu = (
+      <ProfileMenuWrapper>
+        <IconButton
+          aria-owns={profileMenuOpen ? 'menu-appbar' : undefined}
+          aria-haspopup="true"
+          onClick={this.handleProfileMenu}
+          color="inherit"
+        >
+          <AccountCircleIcon fontSize="large" />
+        </IconButton>
+        <Menu
+          id="menu-appbar"
+          anchorEl={anchorEl}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'right',
+          }}
+          transformOrigin={{
+            vertical: 'bottom',
+            horizontal: 'right',
+          }}
+          open={profileMenuOpen}
+          onClose={this.handleProfileMenuClose}
+        >
+          <MenuItem onClick={this.handleProfileMenuClose}>Account</MenuItem>
+          <MenuItem onClick={this.handleProfileMenuClose}>My Profile</MenuItem>
+          <MenuItem onClick={() => logout()}>Logout</MenuItem>
+        </Menu>
+      </ProfileMenuWrapper>
+    );
+
     return (
       <StyledAdminNav>
         <CssBaseline />
@@ -239,6 +290,8 @@ class AdminNav extends React.Component {
                 Isegoria <BetaBadge>Beta</BetaBadge>
               </Typography>
             </Logo>
+
+            {profileMenu}
           </Toolbar>
         </StyledAppBar>
 
