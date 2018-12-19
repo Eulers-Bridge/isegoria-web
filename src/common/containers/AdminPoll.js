@@ -31,6 +31,7 @@ class AdminPoll extends React.Component {
           <StyledFab
             aria-label="Add"
             color="primary"
+            key="add-poll"
             onClick={
               () => window.location.href += '/create'
             }
