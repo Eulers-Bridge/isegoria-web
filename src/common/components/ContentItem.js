@@ -3,7 +3,11 @@ import styled from 'styled-components';
 
 import { Link } from 'react-router-dom';
 
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Grid from '@material-ui/core/Grid';
+
 import utils from '../../utils';
+import { Typography } from '@material-ui/core';
 
 const StyledContentItem = styled.div`
   align-items: center;
@@ -67,6 +71,17 @@ const ContentItemPollOption = styled.li`
     display: block;
     margin: 1em;
     max-width: 120px;
+  }
+`;
+
+const ElectionDetails = styled(Grid)`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  h6 {
+    margin: 1rem auto;
   }
 `;
 
@@ -140,6 +155,47 @@ const ContentItem = props => {
           </Link>
         </h4>
         <em>{utils.formatDate(item.date || item.created || item.start)}</em>
+        {
+          contentType === 'election' &&
+            <Grid container spacing={16}>
+              <ElectionDetails item xs>
+                <Typography variant="h6">Candidates</Typography>
+                {
+                  !item.candidates && <CircularProgress />
+                }
+                {
+                  item.candidates &&
+                  <ul>
+                    { item.candidates.map(candidate => <li>{candidate.givenName} {candidate.familyName}</li>) }
+                  </ul>
+                }
+              </ElectionDetails>
+              <ElectionDetails item xs>
+                <Typography variant="h6">Positions</Typography>
+                {
+                  !item.positions && <CircularProgress />
+                }
+                {
+                  item.positions &&
+                  <ul>
+                    { item.positions.map(position => <li>{position.name}</li>) }
+                  </ul>
+                }
+              </ElectionDetails>
+              <ElectionDetails item xs>
+                <Typography variant="h6">Tickets</Typography>
+                {
+                  !item.tickets && <CircularProgress />
+                }
+                {
+                  item.tickets &&
+                    <ul>
+                      { item.tickets.map(ticket => <li>{ticket.name}</li>) }
+                    </ul>
+                }
+              </ElectionDetails>
+            </Grid>
+        }
         {
           // ##TODO## :: "getChildContent" per type
           item.content &&

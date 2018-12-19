@@ -1,5 +1,6 @@
 import authApi from '../api/auth';
 import { fetchArticles, fetchEvents, fetchPhotos, fetchPolls } from './content';
+import { fetchElections } from './elections';
 import { push } from 'connected-react-router';
 
 export const ATTEMPT_LOGIN = 'ATTEMPT_LOGIN';
@@ -31,10 +32,13 @@ export function attemptLogin (email, password) {
           results.user,
           { userId: results.userId }
         ))),
+        // ##TODO## :: Be more sensible with these
         dispatch(fetchArticles(fetchArgs)),
         dispatch(fetchEvents(fetchArgs)),
         dispatch(fetchPhotos(fetchArgs)),
-        dispatch(fetchPolls(fetchArgs))
+        dispatch(fetchPolls(fetchArgs)),
+
+        dispatch(fetchElections(fetchArgs))
       ])
     }, { email, password })
   ])

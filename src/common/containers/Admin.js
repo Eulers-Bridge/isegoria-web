@@ -9,10 +9,13 @@ import Switch from 'react-router-dom/Switch';
 import * as AuthActions from '../actions/auth';
 
 import AdminArticle from './AdminArticle';
+import AdminCandidate from './AdminCandidate';
 import AdminDashboard from './AdminDashboard';
+import AdminElection from './AdminElection';
 import AdminEvent from './AdminEvent';
 import AdminPhoto from './AdminPhoto';
 import AdminPoll from './AdminPoll';
+import AdminTicket from './AdminTicket';
 
 import AdminNav from '../components/AdminNav';
 
@@ -58,6 +61,11 @@ class Admin extends React.Component {
               <Route path="/admin/events/:id?" component={AdminEvent} />
               <Route path="/admin/photos/:id?" component={AdminPhoto} />
               <Route path="/admin/polls/:id?" component={AdminPoll} />
+
+              <Route path="/admin/elections/:id?" component={AdminElection} />
+              <Route path="/admin/candidates/:id?" component={AdminCandidate} />
+              <Route path="/admin/tickets/:id?" component={AdminTicket} />
+
               <Route path="/" component={AdminDashboard} />
             </Switch>
           </AdminFeed>
