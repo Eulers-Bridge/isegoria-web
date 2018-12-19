@@ -146,22 +146,25 @@ export default {
     const { email, password } = JSON.parse(localStorage.getItem('u'));
 
     const url = `event/${id ? id : ''}`
-    // ##TODO## :: Think about where to put this
-    event.starts = (Date.parse(event.starts))
-    event.ends = (Date.parse(event.ends))
     // ##TODON'T##
     const callFunction = (id ? utils.apiPut : utils.apiPost).bind(utils)
     const authHeader = utils.generateBasicAuth(email, password);
 
-    return callFunction(url, {
-      body: JSON.stringify({
+    const eventData = Object.assign({},
+      {
         organizerEmail: event.organizerEmail,
-        starts: event.starts,
-        ends: event.ends,
+        starts: Date.parse(event.starts),
+        ends: Date.parse(event.ends),
         description: event.description,
         name: event.name,
-        institutionId: institutionId
-      }),
+        institutionId: institutionId,
+        location: event.location,
+        created: event.created || Date.parse(new Date())
+      }
+    );
+
+    return callFunction(url, {
+      body: JSON.stringify(eventData),
       headers: {
         'Accept': 'application/json',
         'Authorization': authHeader,
