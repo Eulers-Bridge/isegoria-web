@@ -55,12 +55,14 @@ const DrawerWrapper = styled.div`
 `;
 
 const Logo = styled.a`
-  align-items: center;
-  display: flex;
-  justify-content: center;
+  && {
+    align-items: center;
+    display: flex;
+    justify-content: center;
 
-  @media screen and (max-width: 960px) {
-    margin: 0 auto;
+    @media screen and (max-width: 960px) {
+      margin: 0 auto;
+    }
   }
 `;
 
