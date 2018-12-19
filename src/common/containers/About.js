@@ -66,7 +66,7 @@ class About extends React.Component {
       <Content className="content">
         <NavBar />
 
-        <header>
+        <header className="public-header">
           <div className="container">
             <strong><h1>Hey! Ni Hao! Hola!</h1></strong>
             <h2>Welcome to Euler’s Bridge, the company behind the platform. We’re committed to building connected and cooperative local networks.</h2>

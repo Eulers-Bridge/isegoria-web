@@ -44,7 +44,7 @@ class Home extends React.Component {
       <Content className="content">
         <NavBar />
 
-        <header>
+        <header className="public-header">
           <div className="container">
           <strong><h1>Bridging Communities, Together.</h1></strong>
           <h2>Introducing Isegoria - a graph analytics platform to empower your
