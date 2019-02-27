@@ -302,7 +302,7 @@ class AdminNav extends React.Component {
               <MenuIcon />
             </MenuButton>
 
-            <Logo>
+            <Logo href="/admin">
               <LogoImage src={logo} alt="Isegoria Logo" />
               <Typography variant="h6" color="inherit" noWrap>
                 Isegoria <BetaBadge>Beta</BetaBadge>
