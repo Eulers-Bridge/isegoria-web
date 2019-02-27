@@ -196,11 +196,11 @@ const ContentItem = props => {
               </ElectionDetails>
             </Grid>
         }
-        {
+        {/* {
           // ##TODO## :: "getChildContent" per type
           item.content &&
             <p>{utils.truncate(item.content, 120)}</p>
-        }
+        } */}
         {
           // ##TODON'T##
           item.pollOptions &&

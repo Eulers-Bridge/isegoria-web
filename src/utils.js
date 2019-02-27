@@ -18,24 +18,30 @@ const CONTENT_TYPES = {
   photo: {
     slug: 'photos',
     title: 'Photos'
-  },
-  poll: {
-    slug: 'polls',
-    title: 'Polls'
   }
 }
 const ELECTION_TYPES = {
-  candidate: {
-    slug: 'candidates',
-    title: 'Candidates'
-  },
   election: {
     slug: 'elections',
     title: 'Elections'
   },
+  position: {
+    slug: 'positions',
+    title: 'Positions'
+  },
+  candidate: {
+    slug: 'candidates',
+    title: 'Candidates'
+  },
   ticket: {
     slug: 'tickets',
     title: 'Tickets'
+  }
+}
+const POLL_TYPES = {
+  poll: {
+    slug: 'polls',
+    title: 'Polls'
   }
 }
 
@@ -68,7 +74,8 @@ const utils = Object.assign({},
   {
     API_BASE,
     CONTENT_TYPES,
-    ELECTION_TYPES
+    ELECTION_TYPES,
+    POLL_TYPES
   },
   {
     // Redirect the user to a 404 page
