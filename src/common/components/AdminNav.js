@@ -25,6 +25,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import BallotIcon from '@material-ui/icons/Ballot';
 import BookIcon from '@material-ui/icons/Book';
+import DirectionsRunIcon from '@material-ui/icons/DirectionsRun';
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import HowToRegIcon from '@material-ui/icons/HowToReg';
@@ -142,6 +143,7 @@ const MENU_ICONS = {
   logout: <ExitToAppIcon />,
   photo: <PhotoLibraryIcon />,
   poll: <PollIcon />,
+  position: <DirectionsRunIcon />,
   profile: <HowToRegIcon />,
   ticket: <BallotIcon />
 }
@@ -188,7 +190,8 @@ class AdminNav extends React.Component {
 
     const {
       CONTENT_TYPES,
-      ELECTION_TYPES
+      ELECTION_TYPES,
+      POLL_TYPES
     } = utils;
 
     const profileMenuOpen = !!anchorEl;
@@ -203,6 +206,19 @@ class AdminNav extends React.Component {
           {
             Object.keys(CONTENT_TYPES).map(contentType => {
               const { slug, title } = CONTENT_TYPES[contentType];
+              return generateMenuItem(contentType, title,
+                this.navigateTo.bind(this, `/admin/${slug}`)
+              );
+            })
+          }
+        </List>
+
+        <Divider />
+        <List>
+          <ListSubheader>Polls</ListSubheader>
+          {
+            Object.keys(POLL_TYPES).map(contentType => {
+              const { slug, title } = POLL_TYPES[contentType];
               return generateMenuItem(contentType, title,
                 this.navigateTo.bind(this, `/admin/${slug}`)
               );
@@ -286,7 +302,7 @@ class AdminNav extends React.Component {
               <MenuIcon />
             </MenuButton>
 
-            <Logo>
+            <Logo href="/admin">
               <LogoImage src={logo} alt="Isegoria Logo" />
               <Typography variant="h6" color="inherit" noWrap>
                 Isegoria <BetaBadge>Beta</BetaBadge>
