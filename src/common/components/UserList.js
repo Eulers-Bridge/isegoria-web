@@ -10,8 +10,6 @@ import TableRow from '@material-ui/core/TableRow';
 
 
 const UserList = ({ users }) => {
-  console.log(users);
-
   return (
     <Table>
       <TableHead>
