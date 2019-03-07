@@ -35,14 +35,9 @@ export const StyledFab = styled(Fab)`
   }
 `;
 
-const InvitePage = styled.div`
-  width: 100%;
-`;
-
 class AdminArticle extends React.Component {
   render() {
     const {
-      match: { params },
       staff
     } = this.props;
 

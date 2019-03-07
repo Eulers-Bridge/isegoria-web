@@ -32,7 +32,7 @@ class AdminPhoto extends React.Component {
       : photos;
 
     return ([
-      <div>
+      <div key="items">
       {
         displayPhotos.map(photo =>
           <ContentItem
