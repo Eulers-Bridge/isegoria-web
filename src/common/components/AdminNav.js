@@ -32,6 +32,7 @@ import HowToRegIcon from '@material-ui/icons/HowToReg';
 import HowToVoteIcon from '@material-ui/icons/HowToVote';
 import MenuIcon from '@material-ui/icons/Menu';
 import PersonIcon from '@material-ui/icons/Person';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
 import PollIcon from '@material-ui/icons/Poll';
 
@@ -136,6 +137,7 @@ const MenuButton = styled(IconButton)`
 
 const MENU_ICONS = {
   account: <AccountBoxIcon />,
+  admins: <PersonAddIcon />,
   article: <BookIcon />,
   candidate: <PersonIcon />,
   election: <HowToVoteIcon />,
@@ -245,6 +247,11 @@ class AdminNav extends React.Component {
           {
             generateMenuItem('account', 'Account',
               this.navigateTo.bind(this, `/admin/account`)
+            )
+          }
+          {
+            generateMenuItem('admins', 'Invite Admins',
+              this.navigateTo.bind(this, `/admin/invite`)
             )
           }
           {
