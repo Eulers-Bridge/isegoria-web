@@ -10,6 +10,7 @@ export const StyledNavBar = styled.nav`
   font-family: 'MuseoSansRounded';
   height: 60px;
   margin: 0;
+  min-height: 60px;
   padding: 0;
   width: 100%;
   display: flex;

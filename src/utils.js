@@ -148,6 +148,15 @@ const utils = Object.assign({},
       return `${year}-${displayMonth}-${displayDay}`
     },
 
+    queryStringToObject: function (queryString) {
+      const params = new URLSearchParams(queryString)
+      return Array.from(params.keys()).reduce((result, param) =>
+        Object.assign({},
+          result,
+          {[param]: params.get(param)}
+        ), {});
+    },
+
     truncate: function (str, len) {
       return `${str.slice(0, len)}${str.length > len ? '...' : ''}`
     }
