@@ -58,6 +58,7 @@ class Trial extends React.Component {
             <h1>Interested in a trial?</h1>
             <p>Please provide your details below and someone from the team will be in touch:</p>
             <FormContainer
+              action="https://docs.google.com/forms/d/e/1FAIpQLSfCcA0N1THGwoq81vyl_whYpmBdM21PK_H8BrK2CSru8cDWOA/formResponse"
               method="post"
             >
               <FormRow>
@@ -68,7 +69,7 @@ class Trial extends React.Component {
                 </label>
                 <input
                   id="orgname"
-                  name="orgname" />
+                  name="entry.1999517077" />
               </FormRow>
 
               <FormRow>
@@ -79,7 +80,7 @@ class Trial extends React.Component {
                 </label>
                 <select
                   id="orgtype"
-                  name="orgtype"
+                  name="entry.213599097"
                 >
                   <option value="Industry body">Industry body</option>
                   <option value="Incorporated association">Incorporated association</option>
@@ -98,7 +99,7 @@ class Trial extends React.Component {
                 </label>
                 <select
                   id="orgsize"
-                  name="orgsize"
+                  name="entry.1662613538"
                 >
                   <option value="< 150">{`< 150`}</option>
                   <option value="151 - 500">{`151 - 500`}</option>
@@ -115,7 +116,7 @@ class Trial extends React.Component {
                 </label>
                 <input
                   id="electiondate"
-                  name="electiondate"
+                  name="entry.2135680696"
                   type="date" />
               </FormRow>
 
@@ -125,16 +126,20 @@ class Trial extends React.Component {
                 >
                   Country
                 </label>
-                <select name="Country"> 
-                  <option value="" selected="selected">Select Country</option> 
+                <select
+                  defaultValue=""
+                  id="country"
+                  name="entry.144536979"
+                >
+                  <option value="">Select Country</option>
                   {
-                    utils.COUNTRIES.map(country =>
-                      <option value={country}>{country}</option>
+                    utils.COUNTRIES.map((country, i) =>
+                      <option value={country} key={i}>{country}</option>
                     )
                   }
                 </select>
               </FormRow>
-              
+
               <FormRow>
                 <label
                   htmlFor="email"
@@ -143,21 +148,21 @@ class Trial extends React.Component {
                 </label>
                 <input
                   id="email"
-                  name="email"
+                  name="entry.292765850"
                   type="email" />
               </FormRow>
 
               <FormRow>
                 <label
-                  htmlFor="comment"
+                  htmlFor="comments"
                 >
                   Comments
                 </label>
                 <textarea
-                  id="comment"
-                  name="comment" />
+                  id="comments"
+                  name="entry.1862773477" />
               </FormRow>
-              
+
               <FormRow>
                 <input
                   type="submit"
