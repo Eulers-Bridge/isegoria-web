@@ -13,6 +13,7 @@ import AuthContainer from './AuthContainer';
 import Contact from './Contact';
 import ForgotPassword from './ForgotPassword';
 import Login from './Login';
+import Trial from './Trial';
 import Welcome from './Welcome';
 
 import './Fonts.css';
@@ -38,6 +39,7 @@ class App extends React.Component {
         <Route path="/contact" component={Contact} />
         <Route path="/details" component={About} />
         <Route path="/login" component={Login} />
+        <Route path="/trial" component={Trial} />
         <Route path="/forgot-password" component={ForgotPassword} />
         <Route path="/welcome" component={Welcome} />
         <Route exact path="/" component={Home} />
