@@ -49,6 +49,7 @@ export default () => {
       <FooterNav>
         <a href="/about">About Us</a>
         <a href="/details">Details</a>
+        <a href="/trial">Trial</a>
       </FooterNav>
 
       <hr />

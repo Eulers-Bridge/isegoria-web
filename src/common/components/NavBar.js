@@ -49,6 +49,7 @@ const NavBar = () =>
     </Link>
     <Link to="/about">About Us</Link>
     <Link to="/details">Details</Link>
+    <Link to="/trial">Trial</Link>
     <Link to="/contact">Contact</Link>
     <LoginButton
       className="button"
