@@ -109,6 +109,18 @@ class Trial extends React.Component {
 
               <FormRow>
                 <label
+                  htmlFor="electiondate"
+                >
+                  Election date
+                </label>
+                <input
+                  id="electiondate"
+                  name="electiondate"
+                  type="date" />
+              </FormRow>
+
+              <FormRow>
+                <label
                   htmlFor="country"
                 >
                   Country
