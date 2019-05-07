@@ -1,19 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import HubspotForm from 'react-hubspot-form'
-
 import Footer from '../components/Footer';
 import NavBar from '../components/NavBar';
 
 import { Content } from './Home';
 import './Home.css';
 
-const FormContainer = styled.div`
+const FormContainer = styled.form`
   margin: 20px auto 0 auto;
 
   input {
-    margin: 0 auto 30px auto;
+    margin: 0;
+  }
+
+  input, select, submit {
+    font-size: 120%;
   }
 
   textarea {
@@ -23,10 +25,18 @@ const FormContainer = styled.div`
   input[type=submit] {
     background-color: #167EFB;
     color: #fff;
-    max-width: 120px;
-    margin: 20px 20px 20px auto;
+    margin: 0 0 0 auto;
+    padding: 10px;
     text-align: center;
   }
+`;
+
+const FormRow = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: 0 auto 20px auto;
+  max-width: 480px;
 `;
 
 class Contact extends React.Component {
@@ -47,11 +57,60 @@ class Contact extends React.Component {
           <div className="container">
             <h1>Contact Us</h1>
             <p>Please provide your details below and someone from the team will be in touch:</p>
-            <FormContainer>
-              <HubspotForm
-                portalId="2895682"
-                formId="3e2f56a5-f974-4166-a59a-f71940b6eefb"
-                css="" />
+            <FormContainer
+              action="https://docs.google.com/forms/d/e/1FAIpQLSd6XGWNiOTSa1WyMrp91STavNbdMZtIztD39S0Yaem5O-WFYg/formResponse"
+              method="post"
+            >
+              <FormRow>
+                <label
+                  htmlFor="firstname"
+                >
+                  First name
+                </label>
+                <input
+                  id="firstname"
+                  name="entry.327626009" />
+              </FormRow>
+
+              <FormRow>
+                <label
+                  htmlFor="lastname"
+                >
+                  Last name
+                </label>
+                <input
+                  id="lastname"
+                  name="entry.1253387652" />
+              </FormRow>
+
+              <FormRow>
+                <label
+                  htmlFor="email"
+                >
+                  Contact email
+                </label>
+                <input
+                  id="email"
+                  name="entry.1533294167"
+                  type="email" />
+              </FormRow>
+
+              <FormRow>
+                <label
+                  htmlFor="message"
+                >
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  name="entry.505294611" />
+              </FormRow>
+
+              <FormRow>
+                <input
+                  type="submit"
+                  value="Submit" />
+              </FormRow>
             </FormContainer>
           </div>
         </section>
