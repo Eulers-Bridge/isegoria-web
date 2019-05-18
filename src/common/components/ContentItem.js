@@ -166,7 +166,9 @@ const ContentItem = props => {
                 {
                   item.candidates &&
                   <ul>
-                    { item.candidates.map(candidate => <li>{candidate.givenName} {candidate.familyName}</li>) }
+                    { item.candidates.map((candidate, i) =>
+                      <li key={i}>{candidate.givenName} {candidate.familyName}</li>
+                    ) }
                   </ul>
                 }
               </ElectionDetails>
@@ -178,7 +180,9 @@ const ContentItem = props => {
                 {
                   item.positions &&
                   <ul>
-                    { item.positions.map(position => <li>{position.name}</li>) }
+                    { item.positions.map((position, i) =>
+                      <li key={i}>{position.name}</li>
+                    ) }
                   </ul>
                 }
               </ElectionDetails>
@@ -190,7 +194,9 @@ const ContentItem = props => {
                 {
                   item.tickets &&
                     <ul>
-                      { item.tickets.map(ticket => <li>{ticket.name}</li>) }
+                      { item.tickets.map((ticket, i) =>
+                        <li key={i}>{ticket.name}</li>
+                      ) }
                     </ul>
                 }
               </ElectionDetails>
