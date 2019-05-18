@@ -78,10 +78,14 @@ const ElectionDetails = styled(Grid)`
   align-items: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
 
   h6 {
     margin: 1rem auto;
+  }
+
+  ul {
+    margin: 0;
   }
 `;
 
@@ -175,7 +179,7 @@ const ContentItem = props => {
               <ElectionDetails item xs>
                 <Typography variant="h6">Positions</Typography>
                 {
-                  !item.positions && <CircularProgress />
+                  !item.positions && <span>–</span>
                 }
                 {
                   item.positions &&
