@@ -121,6 +121,8 @@ const ContentItem = props => {
   const idField = item[`${contentType}Id`]
     ? `${contentType}Id`
     : 'nodeId'
+
+  const itemDate = item.date || item.created || item.start || false;
   const itemLink = `/admin/${contentType}s/${item[idField]}`
 
   const creatorName = givenName && familyName
@@ -158,7 +160,10 @@ const ContentItem = props => {
             {item.title || item.name || item.question}
           </Link>
         </h4>
-        <em>{utils.formatDate(item.date || item.created || item.start)}</em>
+        {
+          itemDate &&
+            <em>{utils.formatDate(item.date || item.created || item.start)}</em>
+        }
         {
           contentType === 'election' &&
             <Grid container spacing={16}>
