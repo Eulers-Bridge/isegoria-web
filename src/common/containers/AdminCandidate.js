@@ -11,8 +11,8 @@ class AdminCandidate extends React.Component {
     } = this.props;
     const { id } = params;
     const displayCandidates = id
-      ? candidates.filter(candidate => `${candidate.nodeId}` === id)
-      : candidates;
+    ? candidates.filter(candidate => `${candidate.candidateId}` === id)
+    : candidates;
 
     return (
       displayCandidates.map(candidate =>

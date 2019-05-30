@@ -109,8 +109,34 @@ const VoteCount = styled.p`
   opacity: 0.5;
 `;
 
+const CandidateItem = props => {
+  console.log('lol ci: ', props);
+  const { item } = props;
+
+  return (
+    <StyledContentItem>
+      <h3>{item.email}</h3>
+    </StyledContentItem>
+  )
+}
+
+
+const RENDERERS = {
+  candidate: CandidateItem
+};
+
 const ContentItem = props => {
   const { contentType, item } = props
+
+  // ##TODO## :: Port / centralise remaining
+  if (contentType in RENDERERS) {
+    const Renderer = RENDERERS[contentType];
+
+    return (
+      <Renderer item={item} />
+    )
+  }
+
   const {
     creatorEmail,
     creatorProfile = {},

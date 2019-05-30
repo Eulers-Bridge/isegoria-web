@@ -14,6 +14,7 @@ import AdminDashboard from './AdminDashboard';
 import AdminElection from './AdminElection';
 import AdminEvent from './AdminEvent';
 import AdminInvite from './AdminInvite';
+import AdminPosition from './AdminPosition';
 import AdminPhoto from './AdminPhoto';
 import AdminPoll from './AdminPoll';
 import AdminTicket from './AdminTicket';
@@ -64,6 +65,7 @@ class Admin extends React.Component {
               <Route path="/admin/polls/:id?" component={AdminPoll} />
 
               <Route path="/admin/elections/:id?" component={AdminElection} />
+              <Route path="/admin/positions/:id?" component={AdminPosition} />
               <Route path="/admin/candidates/:id?" component={AdminCandidate} />
               <Route path="/admin/tickets/:id?" component={AdminTicket} />
 
