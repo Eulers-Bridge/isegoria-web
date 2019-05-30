@@ -30,6 +30,12 @@
     "title": "Engineering Manager"
   },
   {
+    "name": "Vivien Xu",
+    "bio": "Educator. Pair Programmer with Cat. Foodie.",
+    "region": "china",
+    "title": "Software Developer"
+  },
+  {
     "name": "Charlie East",
     "bio": "Legal owl. In Her Majesty's Service. Runs like the wind.",
     "region": "uk",
@@ -46,11 +52,5 @@
     "bio": "Business Analytics Neo. Data Management enthusiast. Aspiring musician. Animal lover.",
     "region": "equador",
     "title": "Data & Systems Architect"
-  },
-  {
-    "name": "Vivien Xu",
-    "bio": "Educator. Pair Programmer with Cat. Foodie.",
-    "region": "china",
-    "title": "Software Developer"
   }
 ]
