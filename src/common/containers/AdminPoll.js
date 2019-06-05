@@ -2,10 +2,9 @@ import React from 'react';
 
 import { connect } from 'react-redux';
 
+import AddButton from '../components/AddButton';
 import ContentItem from '../components/ContentItem';
 import PollForm from '../components/PollForm';
-
-import { StyledAddIcon, StyledFab } from './AdminArticle';
 
 class AdminPoll extends React.Component {
   render() {
@@ -28,18 +27,7 @@ class AdminPoll extends React.Component {
               item={poll}
               key={`c-polls-poll-${poll.nodeId}`} />
           ),
-          <StyledFab
-            aria-label="Add"
-            color="primary"
-            key="add-poll"
-            onClick={
-              () => window.location.href += '/create'
-            }
-            variant="extended"
-          >
-            <StyledAddIcon />
-            Add Poll
-          </StyledFab>
+          <AddButton contentType="Poll" />
         ]
     );
   }

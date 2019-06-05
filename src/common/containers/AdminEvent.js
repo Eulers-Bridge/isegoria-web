@@ -1,25 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
 
+import AddButton from '../components/AddButton';
 import EventForm from '../components/EventForm';
 import ContentItem from '../components/ContentItem';
-
-import Fab from '@material-ui/core/Fab';
-
-import AddIcon from '@material-ui/icons/Add';
-
-export const StyledAddIcon = styled(AddIcon)`
-  margin-right: 8px;
-`;
-
-export const StyledFab = styled(Fab)`
-  && {
-    bottom: 16px;
-    position: fixed;
-    right: 16px;
-  }
-`;
 
 class AdminEvent extends React.Component {
   render() {
@@ -42,18 +26,7 @@ class AdminEvent extends React.Component {
               item={event}
               key={`c-events-event-${event.eventId}`} />
           ),
-          <StyledFab
-            aria-label="Add"
-            color="primary"
-            key="add-event"
-            onClick={
-              () => window.location.href += '/create'
-            }
-            variant="extended"
-          >
-            <StyledAddIcon />
-            Add Event
-          </StyledFab>
+          <AddButton contentType="Event" />
         ]
     );
   }

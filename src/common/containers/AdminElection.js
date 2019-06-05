@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import * as ElectionActions from '../actions/elections';
 
+import AddButton from '../components/AddButton';
 import ContentItem from '../components/ContentItem';
 
 class AdminElection extends React.Component {
@@ -12,6 +13,7 @@ class AdminElection extends React.Component {
     elections.map(election => {
       return Promise.all([
         dispatch(ElectionActions.fetchCandidates({ election })),
+        dispatch(ElectionActions.fetchPositions({ election })),
         dispatch(ElectionActions.fetchTickets({ election }))
       ])
     });
@@ -28,12 +30,17 @@ class AdminElection extends React.Component {
       : elections;
 
     return (
-      displayElections.map(election =>
-        <ContentItem
-          contentType="election"
-          item={election}
-          key={`c-elections-election-${election.nodeId}`} />
-      )
+      <React.Fragment>
+        {
+          displayElections.map(election =>
+            <ContentItem
+              contentType="election"
+              item={election}
+              key={`c-elections-election-${election.nodeId}`} />
+          )
+        }
+        <AddButton contentType="Election" />
+      </React.Fragment>
     );
   }
 }

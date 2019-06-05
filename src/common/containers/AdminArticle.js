@@ -1,25 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
 
+import AddButton from '../components/AddButton';
 import ArticleForm from '../components/ArticleForm';
 import ContentItem from '../components/ContentItem';
-
-import Fab from '@material-ui/core/Fab';
-
-import AddIcon from '@material-ui/icons/Add';
-
-export const StyledAddIcon = styled(AddIcon)`
-  margin-right: 8px;
-`;
-
-export const StyledFab = styled(Fab)`
-  && {
-    bottom: 16px;
-    position: fixed;
-    right: 16px;
-  }
-`;
 
 class AdminArticle extends React.Component {
   render() {
@@ -43,18 +27,7 @@ class AdminArticle extends React.Component {
               item={article}
               key={`c-articles-article-${article.articleId}`} />
           ),
-          <StyledFab
-            aria-label="Add"
-            color="primary"
-            key="add-article"
-            onClick={
-              () => window.location.href += '/create'
-            }
-            variant="extended"
-          >
-            <StyledAddIcon />
-            Add Article
-          </StyledFab>
+          <AddButton contentType="Article" />
         ]
     );
   }

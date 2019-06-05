@@ -8,13 +8,23 @@ export const RECEIVE_ELECTION_UPDATE_RESULT = 'RECEIVE_CONTENT_UPDATE_RESULT';
 export const FETCH_CANDIDATES = 'FETCH_CANDIDATES ';
 export const RECEIVE_CANDIDATES  = 'RECEIVE_CANDIDATES ';
 
+export const FETCH_POSITIONS = 'FETCH_POSITIONS ';
+export const RECEIVE_POSITIONS  = 'RECEIVE_POSITIONS ';
+
 export const FETCH_TICKETS = 'FETCH_TICKETS';
 export const RECEIVE_TICKETS = 'RECEIVE_TICKETS';
 
 export function fetchElections (args) {
   return dispatch =>
     electionsApi.fetchElections(
-      results => dispatch(receiveElections(results)),
+      results => Promise.all([
+        ...results.map(election => [
+          dispatch(fetchCandidates({election})),
+          dispatch(fetchPositions({election})),
+          dispatch(fetchTickets({election})),
+        ]),
+        dispatch(receiveElections(results))
+      ]),
       args
     )
 }
@@ -67,6 +77,17 @@ export function receiveCandidates ( results ) {
   return { type: RECEIVE_CANDIDATES, payload: results }
 }
 
+export function fetchPositions (args) {
+  return dispatch =>
+    electionsApi.fetchPositions(
+      results => dispatch(receivePositions(results)),
+      args
+    )
+}
+
+export function receivePositions ( results ) {
+  return { type: RECEIVE_POSITIONS, payload: results }
+}
 
 export function fetchTickets (args) {
   return dispatch =>
