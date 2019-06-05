@@ -3,11 +3,22 @@ import styled from 'styled-components';
 
 import { Link } from 'react-router-dom';
 
+import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Divider from '@material-ui/core/Divider';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelActions   from '@material-ui/core/ExpansionPanelActions';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import HowToVoteIcon from '@material-ui/icons/HowToVote';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import utils from '../../utils';
-import { Typography } from '@material-ui/core';
 
 const StyledContentItem = styled.div`
   align-items: center;
@@ -89,6 +100,10 @@ const ElectionDetails = styled(Grid)`
   }
 `;
 
+const ElectionStyledPanel = styled(ExpansionPanel)`
+  width: 100%;
+`;
+
 const StyledCreator = styled.strong`
   color: #aaa;
   font-size: 1rem;
@@ -110,32 +125,169 @@ const VoteCount = styled.p`
 `;
 
 const CandidateItem = props => {
-  console.log('lol ci: ', props);
   const { item } = props;
 
   return (
-    <StyledContentItem>
-      <h3>{item.email}</h3>
-    </StyledContentItem>
+    <h3>{item.email}</h3>
   )
+}
+
+const DefaultItem = props => {
+  const {
+    item, itemLink, itemDate,
+    creatorName, creatorEmail, previewAlt, previewPhoto,
+  } = props;
+
+  return (
+    <React.Fragment>
+      {
+        previewPhoto &&
+          <ContentItemImage>
+            <Link to={itemLink}>
+              <img
+                alt={previewAlt}
+                src={previewPhoto} />
+            </Link>
+          </ContentItemImage>
+      }
+      <ContentItemDetail>
+        <h4>
+          <Link to={itemLink}>
+            {item.title || item.name || item.question}
+          </Link>
+        </h4>
+        {
+          itemDate &&
+            <em>{utils.formatDate(item.date || item.created || item.start)}</em>
+        }
+        {/* {
+          // ##TODO## :: "getChildContent" per type
+          item.content &&
+            <p>{utils.truncate(item.content, 120)}</p>
+        } */}
+        {
+          // ##TODON'T##
+          item.pollOptions &&
+            <ul>
+              {item.pollOptions.map(pollOption =>
+                <ContentItemPollOption key={`ci-poll-${item.nodeId}-po-${pollOption.id}`}>
+                  {pollOption.photo &&
+                    <img
+                      alt={pollOption.photo.description}
+                      src={pollOption.photo.url}
+                      title={pollOption.photo.title}
+                      width="120" />
+                  }
+                  <PollOption>{pollOption.txt}</PollOption>
+                  <VoteCount>{pollOption.numOfVoters} votes</VoteCount>
+                </ContentItemPollOption>
+              )}
+            </ul>
+        }
+        {
+          creatorName &&
+            <StyledCreator>Added by <a href={`mailto:${creatorEmail}`}>{creatorName}</a></StyledCreator>
+        }
+      </ContentItemDetail>
+    </React.Fragment>
+  )
+}
+
+const ElectionItem = props => {
+  const { item, itemDate, itemLink } = props;
+
+  return (
+    <ElectionStyledPanel>
+      <ExpansionPanelSummary
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls="panel1bh-content"
+        id="panel1bh-header"
+      >
+        <Grid container direction="row">
+          <Grid item xs={1}>
+            <HowToVoteIcon />
+          </Grid>
+          <Grid item xs={11}>
+            <h4>
+              <Link to={itemLink}>
+                {item.title || item.name || item.question}
+              </Link>
+            </h4>
+            {
+              itemDate &&
+                <Typography>{utils.formatDate(item.date || item.created || item.start)}</Typography>
+            }
+          </Grid>
+        </Grid>
+      </ExpansionPanelSummary>
+      <ExpansionPanelDetails>
+        <Grid container spacing={16}>
+          <ElectionDetails item xs>
+            <Typography variant="h6">Candidates</Typography>
+            {
+              !item.candidates && <CircularProgress />
+            }
+            {
+              item.candidates &&
+              <ul>
+                { item.candidates.map((candidate, i) =>
+                  <li key={i}>{candidate.givenName} {candidate.familyName}</li>
+                ) }
+              </ul>
+            }
+          </ElectionDetails>
+          <ElectionDetails item xs>
+            <Typography variant="h6">Positions</Typography>
+            {
+              !item.positions && <span>–</span>
+            }
+            {
+              item.positions &&
+              <ul>
+                { item.positions.map((position, i) =>
+                  <li key={i}>{position.name}</li>
+                ) }
+              </ul>
+            }
+          </ElectionDetails>
+          <ElectionDetails item xs>
+            <Typography variant="h6">Tickets</Typography>
+            {
+              !item.tickets && <CircularProgress />
+            }
+            {
+              item.tickets &&
+                <ul>
+                  { item.tickets.map((ticket, i) =>
+                    <li key={i}>{ticket.name}</li>
+                  ) }
+                </ul>
+            }
+          </ElectionDetails>
+        </Grid>
+      </ExpansionPanelDetails>
+      <Divider />
+      <ExpansionPanelActions>
+        <Button size="small">
+          <EditIcon />
+        </Button>
+        <Button size="small">
+          <DeleteIcon />
+        </Button>
+      </ExpansionPanelActions>
+    </ElectionStyledPanel>
+  );
 }
 
 
 const RENDERERS = {
-  candidate: CandidateItem
+  candidate: CandidateItem,
+  default: DefaultItem,
+  election: ElectionItem
 };
 
 const ContentItem = props => {
   const { contentType, item } = props
-
-  // ##TODO## :: Port / centralise remaining
-  if (contentType in RENDERERS) {
-    const Renderer = RENDERERS[contentType];
-
-    return (
-      <Renderer item={item} />
-    )
-  }
 
   const {
     creatorEmail,
@@ -168,106 +320,24 @@ const ContentItem = props => {
   const previewPhoto = photoObject.url
   const previewAlt = photoObject.description
 
+  // ##TODO## :: Port / centralise remaining
+  const Renderer = (contentType in RENDERERS)
+    ? RENDERERS[contentType]
+    : RENDERERS.default;
+
   return (
     <StyledContentItem>
-      {
-        previewPhoto &&
-          <ContentItemImage>
-            <Link to={itemLink}>
-              <img
-                alt={previewAlt}
-                src={previewPhoto} />
-            </Link>
-          </ContentItemImage>
-      }
-      <ContentItemDetail>
-        <h4>
-          <Link to={itemLink}>
-            {item.title || item.name || item.question}
-          </Link>
-        </h4>
-        {
-          itemDate &&
-            <em>{utils.formatDate(item.date || item.created || item.start)}</em>
-        }
-        {
-          contentType === 'election' &&
-            <Grid container spacing={16}>
-              <ElectionDetails item xs>
-                <Typography variant="h6">Candidates</Typography>
-                {
-                  !item.candidates && <CircularProgress />
-                }
-                {
-                  item.candidates &&
-                  <ul>
-                    { item.candidates.map((candidate, i) =>
-                      <li key={i}>{candidate.givenName} {candidate.familyName}</li>
-                    ) }
-                  </ul>
-                }
-              </ElectionDetails>
-              <ElectionDetails item xs>
-                <Typography variant="h6">Positions</Typography>
-                {
-                  !item.positions && <span>–</span>
-                }
-                {
-                  item.positions &&
-                  <ul>
-                    { item.positions.map((position, i) =>
-                      <li key={i}>{position.name}</li>
-                    ) }
-                  </ul>
-                }
-              </ElectionDetails>
-              <ElectionDetails item xs>
-                <Typography variant="h6">Tickets</Typography>
-                {
-                  !item.tickets && <CircularProgress />
-                }
-                {
-                  item.tickets &&
-                    <ul>
-                      { item.tickets.map((ticket, i) =>
-                        <li key={i}>{ticket.name}</li>
-                      ) }
-                    </ul>
-                }
-              </ElectionDetails>
-            </Grid>
-        }
-        {/* {
-          // ##TODO## :: "getChildContent" per type
-          item.content &&
-            <p>{utils.truncate(item.content, 120)}</p>
-        } */}
-        {
-          // ##TODON'T##
-          item.pollOptions &&
-            <ul>
-              {item.pollOptions.map(pollOption =>
-                <ContentItemPollOption key={`ci-poll-${item.nodeId}-po-${pollOption.id}`}>
-                  {pollOption.photo &&
-                    <img
-                      alt={pollOption.photo.description}
-                      src={pollOption.photo.url}
-                      title={pollOption.photo.title}
-                      width="120" />
-                  }
-                  <PollOption>{pollOption.txt}</PollOption>
-                  <VoteCount>{pollOption.numOfVoters} votes</VoteCount>
-                </ContentItemPollOption>
-              )}
-            </ul>
-        }
-        {
-          creatorName &&
-            <StyledCreator>Added by <a href={`mailto:${creatorEmail}`}>{creatorName}</a></StyledCreator>
-        }
-      </ContentItemDetail>
+      <Renderer
+        creatorEmail={creatorEmail}
+        creatorName={creatorName}
+        item={item}
+        itemDate={itemDate}
+        itemLink={itemLink}
+        previewAlt={previewAlt}
+        previewPhoto={previewPhoto}
+        />
     </StyledContentItem>
-  )
+  );
 }
 
 export default ContentItem;

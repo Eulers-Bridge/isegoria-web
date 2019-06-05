@@ -1,22 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-// import * as ElectionActions from '../actions/elections';
-
+import AddButton from '../components/AddButton';
 import ContentItem from '../components/ContentItem';
 
 class AdminPosition extends React.Component {
-  // componentDidMount() {
-  //   const { dispatch, elections } = this.props
-
-  //   elections.map(election => {
-  //     return Promise.all([
-  //       dispatch(ElectionActions.fetchCandidates({ election })),
-  //       dispatch(ElectionActions.fetchTickets({ election }))
-  //     ])
-  //   });
-  // }
-
   render() {
     const {
       positions,
@@ -37,6 +25,7 @@ class AdminPosition extends React.Component {
               key={`c-elections-position-${position.positionId}`} />
           )
         }
+        <AddButton contentType="Position" />
       </React.Fragment>
     );
   }
