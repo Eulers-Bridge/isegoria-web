@@ -23,6 +23,8 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
+// + TicketRenderer
+import CardMedia from '@material-ui/core/CardMedia';
 
 import utils from '../../utils';
 
@@ -128,6 +130,11 @@ const PollOption = styled.p`
 
 const VoteCount = styled.p`
   opacity: 0.5;
+`;
+
+const TicketCardMedia = styled(CardMedia)`
+    height: 0;
+    padding-top: 56.25%;
 `;
 
 const CandidateItem = props => {
@@ -312,13 +319,46 @@ const PositionItem = props => {
   )
 }
 
+const TicketItem = props => {
+  const { item } = props;
+
+  return (
+    <Card>
+      <CardHeader
+        title={ item.name }
+      />
+
+      <TicketCardMedia
+        image={ item.logo }
+        title={ item.name }
+      />
+
+      <CardContent>
+        { item.information }
+      </CardContent>
+
+      <Divider />
+
+      <CardActions>
+        <Button size="small">
+          <EditIcon />
+        </Button>
+        <Button size="small">
+          <DeleteIcon />
+        </Button>
+      </CardActions>
+    </Card>
+  )
+}
+
 
 // ##TODO## :: Split to files
 const RENDERERS = {
   candidate: CandidateItem,
   default: DefaultItem,
   election: ElectionItem,
-  position: PositionItem
+  position: PositionItem,
+  ticket: TicketItem
 };
 
 const ContentItem = props => {
