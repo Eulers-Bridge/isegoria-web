@@ -17,6 +17,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import HowToVoteIcon from '@material-ui/icons/HowToVote';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import MailIcon from '@material-ui/icons/Mail';
 
 // PositionRenderer
 import Card from '@material-ui/core/Card';
@@ -138,10 +139,37 @@ const TicketCardMedia = styled(CardMedia)`
 `;
 
 const CandidateItem = props => {
-  const { item } = props;
+  const {
+    item, itemLink, creatorName
+  } = props;
 
   return (
-    <h3>{item.email}</h3>
+    <Card>
+      <CardHeader
+        title={ `${item.givenName || ''} ${ item.familyName || ''}` }
+        subheader={ item.email }
+      />
+
+      <CardContent>
+        <Typography element="h3">{ `{{position.title}}` }</Typography>
+        <Typography>{ item.information }</Typography>
+        <Typography>{ item.policyStatement }</Typography>
+      </CardContent>
+
+      <Divider />
+
+      <CardActions>
+        <Button size="small">
+          <MailIcon />
+        </Button>
+        <Button size="small">
+          <EditIcon />
+        </Button>
+        <Button size="small">
+          <DeleteIcon />
+        </Button>
+      </CardActions>
+    </Card>
   )
 }
 
