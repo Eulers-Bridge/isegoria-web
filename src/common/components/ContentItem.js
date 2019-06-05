@@ -18,6 +18,12 @@ import EditIcon from '@material-ui/icons/Edit';
 import HowToVoteIcon from '@material-ui/icons/HowToVote';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
+// PositionRenderer
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardContent from '@material-ui/core/CardContent';
+
 import utils from '../../utils';
 
 const StyledContentItem = styled.div`
@@ -279,11 +285,40 @@ const ElectionItem = props => {
   );
 }
 
+const PositionItem = props => {
+  const { item } = props;
 
+  return (
+    <Card>
+      <CardHeader
+        title={ item.name }
+      />
+
+      <CardContent>
+        { item.description }
+      </CardContent>
+
+      <Divider />
+
+      <CardActions>
+        <Button size="small">
+          <EditIcon />
+        </Button>
+        <Button size="small">
+          <DeleteIcon />
+        </Button>
+      </CardActions>
+    </Card>
+  )
+}
+
+
+// ##TODO## :: Split to files
 const RENDERERS = {
   candidate: CandidateItem,
   default: DefaultItem,
-  election: ElectionItem
+  election: ElectionItem,
+  position: PositionItem
 };
 
 const ContentItem = props => {
