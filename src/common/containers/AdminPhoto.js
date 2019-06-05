@@ -1,24 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
 import { connect } from 'react-redux';
 
+import AddButton from '../components/AddButton';
 import ContentItem from '../components/ContentItem';
-
-import Fab from '@material-ui/core/Fab';
-
-import AddIcon from '@material-ui/icons/Add';
-
-export const StyledAddIcon = styled(AddIcon)`
-  margin-right: 8px;
-`;
-
-export const StyledFab = styled(Fab)`
-  && {
-    bottom: 16px;
-    position: fixed;
-    right: 16px;
-  }
-`;
 
 class AdminPhoto extends React.Component {
   render() {
@@ -42,18 +26,7 @@ class AdminPhoto extends React.Component {
         )
       }
       </div>,
-      <StyledFab
-        aria-label="Add"
-        color="primary"
-        key="add-photo"
-        onClick={
-          () => window.location.href += '/create'
-        }
-        variant="extended"
-      >
-        <StyledAddIcon />
-        Add Photo
-      </StyledFab>
+      <AddButton contentType="Photo" />
     ]);
   }
 }

@@ -4,6 +4,7 @@ import * as ElectionsActions from '../actions/elections';
 const elections = (state = {
   candidate: [],
   election: [],
+  position: [],
   ticket: []
 }, action) => {
   const { election } = state
@@ -23,6 +24,16 @@ const elections = (state = {
           {...e}, {candidates: action.payload}
         )),
         candidate: action.payload
+      }
+
+    case ElectionsActions.RECEIVE_POSITIONS:
+      return {
+        ...state,
+        // ##TODO## :: { id: data } and merge
+        election: election.map(e => Object.assign({},
+          {...e}, {positions: action.payload}
+        )),
+        position: action.payload
       }
 
     case ElectionsActions.RECEIVE_TICKETS:
