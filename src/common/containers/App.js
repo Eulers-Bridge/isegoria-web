@@ -11,6 +11,7 @@ import Home from './Home';
 import About from './About';
 import AuthContainer from './AuthContainer';
 import Contact from './Contact';
+import Details from './Details';
 import ForgotPassword from './ForgotPassword';
 import Login from './Login';
 import Trial from './Trial';
@@ -37,7 +38,7 @@ class App extends React.Component {
       <Switch>
         <Route path="/about" component={About} />
         <Route path="/contact" component={Contact} />
-        <Route path="/details" component={About} />
+        <Route path="/details" component={Details} />
         <Route path="/login" component={Login} />
         <Route path="/trial" component={Trial} />
         <Route path="/forgot-password" component={ForgotPassword} />
