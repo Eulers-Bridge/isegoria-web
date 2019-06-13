@@ -24,8 +24,6 @@ const DetailLink = styled.a`
 
 class Details extends React.Component {
   render() {
-    const { staff } = this.props;
-
     return (
       <Content className="content">
         <NavBar />
@@ -37,8 +35,8 @@ class Details extends React.Component {
           </div>
         </header>
 
-        <section class="page">
-          <div class="container">
+        <section className="page">
+          <div className="container">
             <DetailHeader>Our Policy</DetailHeader>
             <p>See below for our terms of service, which includes user agreements that govern the use of Isegoria, our privacy policy on the information collected and our current security policies and practices.</p>
             <DetailLink href="/policy">Read our full content policy</DetailLink>

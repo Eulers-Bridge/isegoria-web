@@ -19,6 +19,10 @@ export const StyledNavBar = styled.nav`
   justify-content: flex-start;
   z-index: 2;
 
+  &.dark {
+    background-color: #252525;
+  }
+
   @media (max-width: 480px) {
     background-color: #333;
     a {
@@ -41,8 +45,11 @@ const LogoImage = styled.img`
   margin-right: 8px;
 `
 
-const NavBar = () =>
-  <StyledNavBar id="navbar">
+const NavBar = ({dark}) =>
+  <StyledNavBar
+    className={dark ? 'dark' : ''}
+    id="navbar"
+  >
     <Link className="logo" to="/">
       <LogoImage src={logo} alt="Isegoria Logo" />
       Isegoria<em>Beta</em>
