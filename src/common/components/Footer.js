@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import styled from 'styled-components';
 
@@ -47,9 +48,13 @@ export default () => {
   return (
     <StyledFooter>
       <FooterNav>
-        <a href="/about">About Us</a>
-        <a href="/details">Details</a>
-        <a href="/trial">Trial</a>
+        <Link to="/about">About Us</Link>
+        <Link to="/details">Details</Link>
+        <Link to="/trial">Trial</Link>
+        <Link to="/contact">Contact</Link>
+        <Link to="/privacy">Privacy</Link>
+        <Link to="/terms">Terms</Link>
+        <Link to="/security">Security</Link>
       </FooterNav>
 
       <hr />
