@@ -14,7 +14,9 @@ import Contact from './Contact';
 import Details from './Details';
 import ForgotPassword from './ForgotPassword';
 import Login from './Login';
-import Policy from './Policy';
+import PrivacyPolicy from './PrivacyPolicy';
+import Security from './Security';
+import Terms from './Terms';
 import Trial from './Trial';
 import Welcome from './Welcome';
 
@@ -41,7 +43,9 @@ class App extends React.Component {
         <Route path="/contact" component={Contact} />
         <Route path="/details" component={Details} />
         <Route path="/login" component={Login} />
-        <Route path="/policy" component={Policy} />
+        <Route path="/privacy" component={PrivacyPolicy} />
+        <Route path="/security" component={Security} />
+        <Route path="/terms" component={Terms} />
         <Route path="/trial" component={Trial} />
         <Route path="/forgot-password" component={ForgotPassword} />
         <Route path="/welcome" component={Welcome} />
