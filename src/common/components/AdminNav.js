@@ -28,6 +28,7 @@ import BookIcon from '@material-ui/icons/Book';
 import DirectionsRunIcon from '@material-ui/icons/DirectionsRun';
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import HelpIcon from '@material-ui/icons/Help';
 import HowToRegIcon from '@material-ui/icons/HowToReg';
 import HowToVoteIcon from '@material-ui/icons/HowToVote';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -147,6 +148,7 @@ const MENU_ICONS = {
   poll: <PollIcon />,
   position: <DirectionsRunIcon />,
   profile: <HowToRegIcon />,
+  support: <HelpIcon />,
   ticket: <BallotIcon />
 }
 
@@ -260,6 +262,16 @@ class AdminNav extends React.Component {
             )
           }
           { generateMenuItem('logout', 'Logout', () => logout()) }
+        </List>
+
+        <Divider />
+        <List>
+          <ListSubheader>Help</ListSubheader>
+          {
+            generateMenuItem('support', 'Support',
+              () =>  window.location.href = "mailto:support@isegoria.app?subject=Help"
+            )
+          }
         </List>
       </DrawerWrapper>
     );
