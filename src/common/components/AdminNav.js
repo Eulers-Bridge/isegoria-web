@@ -39,6 +39,15 @@ import PollIcon from '@material-ui/icons/Poll';
 
 import logo from '../../../public/resources/logo_white.png';
 
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+const muiTheme = createMuiTheme({
+  palette: {
+    background: {
+      default: "#ffffff"
+    }
+  }
+});
+
 const BetaBadge = styled.em`
   background-color: #FF3B30;
   border-radius: 100px;
@@ -53,7 +62,12 @@ const BetaBadge = styled.em`
   text-transform: uppercase;
 `;
 
+const CustomCssBaseline = styled(CssBaseline)`
+  background-color: #ffffff;
+`;
+
 const DrawerWrapper = styled.div`
+  background-color: #fafafa;
   width: 240px;
 `;
 
@@ -309,7 +323,9 @@ class AdminNav extends React.Component {
 
     return (
       <StyledAdminNav>
-        <CssBaseline />
+        <MuiThemeProvider theme={muiTheme}>
+          <CustomCssBaseline />
+        </MuiThemeProvider>
 
         <StyledAppBar position="fixed">
           <Toolbar>
