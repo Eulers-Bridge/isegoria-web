@@ -103,7 +103,7 @@ const CandidateForm = ({candidate, auth, dispatch, enqueueSnackbar}) => {
           component={Form}
           container
           direction="column"
-          spacing={32}
+          spacing={4}
         >
           <h2>{cleanCandidate.candidateId ? 'Edit' : 'Create'} Candidate</h2>
           { leadImage &&
@@ -181,4 +181,6 @@ const mapStateToProps = state => {
     auth: state.auth
   }
 }
-export default connect(mapStateToProps)(withSnackbar(CandidateForm));
+export default withSnackbar(
+  connect(mapStateToProps)(CandidateForm)
+);
