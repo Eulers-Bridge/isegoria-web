@@ -46,36 +46,36 @@ server
           `<!doctype html>
             <html lang="">
               <head>
-                  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-                  <meta charset="utf-8" />
-                  <title>Isegoria</title>
-                  <meta name="viewport" content="width=device-width, initial-scale=1">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta charset="utf-8" />
+                <title>Isegoria</title>
+                <meta name="viewport" content="width=device-width, initial-scale=1">
 
-                  <noscript id="jss-insertion-point"></noscript>
-                  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
-                  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+                <noscript id="jss-insertion-point"></noscript>
+                <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+                <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-                  ${assets.client.css
-                    ? `<link rel="stylesheet" href="${assets.client.css}">`
-                    : ''}
-                  ${process.env.NODE_ENV === 'production'
-                    ? `<script src="${assets.client.js}" defer></script>`
-                    : `<script src="${assets.client.js}" defer crossorigin></script>`}
+                ${assets.client.css
+                  ? `<link rel="stylesheet" href="${assets.client.css}">`
+                  : ''}
                   ${styleTags}
               </head>
               <body>
-                  <div id="root">${markup}</div>
-                  <script>
-                    window.__INITIAL_STATE__ = ${serialize(initialState)}
-                  </script>
-                  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-91233938-1"></script>
-                  <script>
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){dataLayer.push(arguments);}
-                    gtag('js', new Date());
-                    gtag('config', 'UA-91233938-1');
-                  </script>
-                  <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/2895682.js"></script>
+                <div id="root">${markup}</div>
+                <script>
+                  window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
+                  window.__INITIAL_STATE__ = ${serialize(initialState)};
+                </script>
+                ${process.env.NODE_ENV === 'production'
+                  ? `<script src="${assets.client.js}" defer></script>`
+                  : `<script src="${assets.client.js}" defer crossorigin></script>`}
+                <script async src="https://www.googletagmanager.com/gtag/js?id=UA-91233938-1"></script>
+                <script>
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', 'UA-91233938-1');
+                </script>
               </body>
           </html>`
         );
