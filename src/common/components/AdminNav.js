@@ -28,6 +28,7 @@ import BookIcon from '@material-ui/icons/Book';
 import DirectionsRunIcon from '@material-ui/icons/DirectionsRun';
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import HelpIcon from '@material-ui/icons/Help';
 import HowToRegIcon from '@material-ui/icons/HowToReg';
 import HowToVoteIcon from '@material-ui/icons/HowToVote';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -37,6 +38,15 @@ import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
 import PollIcon from '@material-ui/icons/Poll';
 
 import logo from '../../../public/resources/logo_white.png';
+
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+const muiTheme = createMuiTheme({
+  palette: {
+    background: {
+      default: "#ffffff"
+    }
+  }
+});
 
 const BetaBadge = styled.em`
   background-color: #FF3B30;
@@ -52,7 +62,12 @@ const BetaBadge = styled.em`
   text-transform: uppercase;
 `;
 
+const CustomCssBaseline = styled(CssBaseline)`
+  background-color: #ffffff;
+`;
+
 const DrawerWrapper = styled.div`
+  background-color: #fafafa;
   width: 240px;
 `;
 
@@ -147,6 +162,7 @@ const MENU_ICONS = {
   poll: <PollIcon />,
   position: <DirectionsRunIcon />,
   profile: <HowToRegIcon />,
+  support: <HelpIcon />,
   ticket: <BallotIcon />
 }
 
@@ -261,6 +277,16 @@ class AdminNav extends React.Component {
           }
           { generateMenuItem('logout', 'Logout', () => logout()) }
         </List>
+
+        <Divider />
+        <List>
+          <ListSubheader>Help</ListSubheader>
+          {
+            generateMenuItem('support', 'Support',
+              () =>  window.location.href = "mailto:support@isegoria.app?subject=Help"
+            )
+          }
+        </List>
       </DrawerWrapper>
     );
 
@@ -297,7 +323,9 @@ class AdminNav extends React.Component {
 
     return (
       <StyledAdminNav>
-        <CssBaseline />
+        <MuiThemeProvider theme={muiTheme}>
+          <CustomCssBaseline />
+        </MuiThemeProvider>
 
         <StyledAppBar position="fixed">
           <Toolbar>

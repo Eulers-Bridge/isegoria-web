@@ -3,7 +3,7 @@ import fetch from 'isomorphic-fetch';
 const API_BASE = {
   development: 'http://localhost:8080/api',
   production: 'https://isegoria.app/api'
-}[process.env.NODE_ENV]
+}[process.env.RAZZLE_API_ENV || process.env.NODE_ENV]
 
 // ##TODO## :: Merge
 const CONTENT_TYPES = {

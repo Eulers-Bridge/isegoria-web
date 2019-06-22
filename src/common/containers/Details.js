@@ -39,7 +39,9 @@ class Details extends React.Component {
           <div className="container">
             <DetailHeader>Our Policy</DetailHeader>
             <p>See below for our terms of service, which includes user agreements that govern the use of Isegoria, our privacy policy on the information collected and our current security policies and practices.</p>
-            <DetailLink href="/policy">Read our full content policy</DetailLink>
+            <DetailLink href="/privacy">Read our full privacy policy</DetailLink>
+            <DetailLink href="/security">Read our full security practices</DetailLink>
+            <DetailLink href="/terms">Read our full terms of use</DetailLink>
             <hr />
 
             <DetailHeader>Pricing</DetailHeader>
