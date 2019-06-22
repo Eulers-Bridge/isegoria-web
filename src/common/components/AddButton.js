@@ -5,9 +5,10 @@ import Fab from '@material-ui/core/Fab';
 
 import AddIcon from '@material-ui/icons/Add';
 
-const StyledAddIcon = styled(AddIcon)`
-  margin-right: 8px;
-`;
+// const StyledAddIcon = styled(AddIcon)`
+//   margin-right: 8px;
+// `;
+const StyledAddIcon = AddIcon;
 
 const StyledFab = styled(Fab)`
   && {
