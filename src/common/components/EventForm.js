@@ -104,7 +104,7 @@ const EventForm = ({event, auth, dispatch, enqueueSnackbar}) => {
           component={Form}
           container
           direction="column"
-          spacing={32}
+          spacing={4}
         >
           <h2>{cleanEvent.articleId ? 'Edit' : 'Create'} Event</h2>
           { leadImage &&
@@ -203,4 +203,6 @@ const mapStateToProps = state => {
     auth: state.auth
   }
 }
-export default connect(mapStateToProps)(withSnackbar(EventForm));
+export default withSnackbar(
+  connect(mapStateToProps)(EventForm)
+);

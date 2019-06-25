@@ -139,9 +139,7 @@ const TicketCardMedia = styled(CardMedia)`
 `;
 
 const CandidateItem = props => {
-  const {
-    item, itemLink, creatorName
-  } = props;
+  const { item } = props;
 
   return (
     <Card>

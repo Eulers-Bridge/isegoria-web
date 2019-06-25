@@ -14,7 +14,7 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 
 import { TextField } from 'formik-material-ui';
-import { withSnackbar} from 'notistack';
+import { withSnackbar } from 'notistack';
 
 const StyledContentFormGrid = styled(Grid)`
   color: #111;
@@ -103,7 +103,7 @@ const ArticleForm = ({article, auth, dispatch, enqueueSnackbar}) => {
           component={Form}
           container
           direction="column"
-          spacing={32}
+          spacing={4}
         >
           <h2>{cleanArticle.articleId ? 'Edit' : 'Create'} Article</h2>
           { leadImage &&
@@ -181,4 +181,6 @@ const mapStateToProps = state => {
     auth: state.auth
   }
 }
-export default connect(mapStateToProps)(withSnackbar(ArticleForm));
+export default withSnackbar(
+  connect(mapStateToProps)(ArticleForm)
+);

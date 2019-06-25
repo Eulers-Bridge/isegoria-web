@@ -2,13 +2,12 @@ import App from '../common/containers/App';
 import React from 'react';
 import { hydrate } from 'react-dom';
 import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'connected-react-router';
+import { ConnectedRouter, push } from 'connected-react-router';
 import { createBrowserHistory } from 'history';
 import configureStore from '../common/store/configureStore';
 import { SnackbarProvider } from 'notistack';
 
-import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { StylesProvider } from '@material-ui/styles';
 
 import * as AuthActions from '../common/actions/auth';
 
@@ -60,21 +59,15 @@ store.subscribe(() => {
 if (localAuth.user && localAuth.user.password) {
   const { email, password } = localAuth.user
   store.dispatch(
-    AuthActions.attemptLogin(email, password)
+    AuthActions.attemptLogin(email, password, () => push('/admin'))
   );
 }
-
-const jss = create({
-  ...jssPreset(),
-  // We define a custom insertion point that JSS will look for injecting the styles in the DOM.
-  insertionPoint: document.getElementById('jss-insertion-point')
-});
 
 hydrate(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <SnackbarProvider maxSnack={3}>
-        <StylesProvider jss={jss}>
+        <StylesProvider injectFirst>
           <App />
         </StylesProvider>
       </SnackbarProvider>

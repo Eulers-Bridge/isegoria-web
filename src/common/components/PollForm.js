@@ -133,7 +133,7 @@ const PollForm = ({auth, dispatch, enqueueSnackbar, poll}) => {
           component={Form}
           container
           direction="column"
-          spacing={32}
+          spacing={4}
         >
           <h2>{cleanPoll.nodeId ? 'Edit' : 'Create'} Poll</h2>
           { leadImage &&
@@ -320,4 +320,6 @@ const mapStateToProps = state => {
     auth: state.auth
   }
 }
-export default connect(mapStateToProps)(withSnackbar(PollForm));
+export default withSnackbar(
+  connect(mapStateToProps)(PollForm)
+);

@@ -2,16 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
+import AddButton from '../components/AddButton';
 import UserList from '../components/UserList';
 
 import Fab from '@material-ui/core/Fab';
 import Grid from '@material-ui/core/Grid';
 
-import AddIcon from '@material-ui/icons/Add';
-
-export const StyledAddIcon = styled(AddIcon)`
-  margin-right: 8px;
-`;
 
 const StyledUserFormGrid = styled(Grid)`
   color: #111;
@@ -48,7 +44,7 @@ class AdminArticle extends React.Component {
         alignItems="center"
         container
         direction="column"
-        spacing={32}
+        spacing={4}
       >
         <h2>Administrators</h2>
         <p>Manage and invite new users with administrative permissions.</p>
@@ -57,18 +53,7 @@ class AdminArticle extends React.Component {
         <UserList
           users={staff} />
 
-        <StyledFab
-          aria-label="Add"
-          color="primary"
-          key="add-article"
-          onClick={
-            () => window.location.href += '/create'
-          }
-          variant="extended"
-        >
-          <StyledAddIcon />
-          Invite New Admin
-        </StyledFab>
+        <AddButton contentType="Admin" />
       </StyledUserFormGrid>
     );
   }

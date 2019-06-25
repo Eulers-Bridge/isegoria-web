@@ -62,10 +62,6 @@ const BetaBadge = styled.em`
   text-transform: uppercase;
 `;
 
-const CustomCssBaseline = styled(CssBaseline)`
-  background-color: #ffffff;
-`;
-
 const DrawerWrapper = styled.div`
   background-color: #fafafa;
   width: 240px;
@@ -324,7 +320,7 @@ class AdminNav extends React.Component {
     return (
       <StyledAdminNav>
         <MuiThemeProvider theme={muiTheme}>
-          <CustomCssBaseline />
+          <CssBaseline />
         </MuiThemeProvider>
 
         <StyledAppBar position="fixed">
