@@ -20,7 +20,7 @@
     "formik-material-ui": "^0.0.18",
     "history": "^4.7.2",
     "isomorphic-fetch": "^2.2.1",
-    "notistack": "^0.8.5",
+    "notistack": "https://github.com/jaylynch/notistack.git",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
