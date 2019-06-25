@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { connect } from 'react-redux';
+import { push } from 'connected-react-router';
 
 import Footer from '../components/Footer';
 import NavBar from '../components/NavBar';
@@ -75,15 +76,21 @@ class Login extends React.Component {
     const { email, password } = this.state;
     event.preventDefault();
 
-    dispatch(AuthActions.attemptLogin(email, password));
+    dispatch(AuthActions.attemptLogin(
+      email,
+      password,
+      // ##TODO## :: Use previous URL instead of always /admin
+      () =>  push("/admin")
+    ));
   }
 
   render() {
+    const { auth: { loggedIn } } = this.props;
     const { email, password } = this.state;
 
     return (
       <Content className="content">
-        <NavBar />
+        <NavBar loggedIn={loggedIn} />
 
         <LoginHeader className="public-header">
           <div className="container">

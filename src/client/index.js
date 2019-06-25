@@ -2,7 +2,7 @@ import App from '../common/containers/App';
 import React from 'react';
 import { hydrate } from 'react-dom';
 import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'connected-react-router';
+import { ConnectedRouter, push } from 'connected-react-router';
 import { createBrowserHistory } from 'history';
 import configureStore from '../common/store/configureStore';
 import { SnackbarProvider } from 'notistack';
@@ -59,7 +59,7 @@ store.subscribe(() => {
 if (localAuth.user && localAuth.user.password) {
   const { email, password } = localAuth.user
   store.dispatch(
-    AuthActions.attemptLogin(email, password)
+    AuthActions.attemptLogin(email, password, () => push('/admin'))
   );
 }
 
