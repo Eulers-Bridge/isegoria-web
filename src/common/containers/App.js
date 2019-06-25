@@ -1,15 +1,11 @@
 import React from 'react';
 
 import { connect } from 'react-redux';
+import { Redirect, Route, withRouter } from 'react-router-dom';
 
-import Route from 'react-router-dom/Route';
-import Switch from 'react-router-dom/Switch';
-import { withRouter } from 'react-router-dom';
-import { push } from 'connected-react-router';
-
+import Admin from './Admin';
 import Home from './Home';
 import About from './About';
-import AuthContainer from './AuthContainer';
 import Contact from './Contact';
 import Details from './Details';
 import ForgotPassword from './ForgotPassword';
@@ -23,22 +19,21 @@ import Welcome from './Welcome';
 import './Fonts.css';
 import './App.css';
 
-class App extends React.Component {
-  componentDidUpdate (prevProps) {
-    const { dispatch, redirectUrl } = this.props;
-    const isLoggingOut = prevProps.isLoggedIn && !this.props.isLoggedIn;
-    const isLoggingIn = !prevProps.isLoggedIn && this.props.isLoggedIn;
-
-    if (isLoggingIn) {
-      dispatch(push(redirectUrl));
-    } else if (isLoggingOut) {
-      dispatch(push('/'));
+const PrivateRoute = ({component: Component, isLoggedIn, ...rest}) =>
+  <Route
+    {...rest}
+    render={props => isLoggedIn
+      ? <Component {...props} />
+      : <Redirect to={{ pathname: "/login", state: { from: props.location }}} />
     }
-  }
+  />
 
+class App extends React.Component {
   render () {
+    const { isLoggedIn } = this.props;
+
     return (
-      <Switch>
+      <div>
         <Route path="/about" component={About} />
         <Route path="/contact" component={Contact} />
         <Route path="/details" component={Details} />
@@ -49,10 +44,11 @@ class App extends React.Component {
         <Route path="/trial" component={Trial} />
         <Route path="/forgot-password" component={ForgotPassword} />
         <Route path="/welcome" component={Welcome} />
-        <Route exact path="/" component={Home} />
 
-        <Route component={AuthContainer} />
-      </Switch>
+        <PrivateRoute isLoggedIn={isLoggedIn} path="/admin" component={Admin} />
+
+        <Route path="/" exact component={Home} />
+      </div>
     );
   }
 }

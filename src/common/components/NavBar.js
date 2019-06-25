@@ -34,7 +34,7 @@ export const StyledNavBar = styled.nav`
   }
 `;
 
-const LoginButton = styled.a`
+const LoginButton = styled(Link)`
   #navbar & {
     font-weight: normal;
     margin-left: auto;
@@ -45,7 +45,7 @@ const LogoImage = styled.img`
   margin-right: 8px;
 `
 
-const NavBar = ({dark}) =>
+const NavBar = ({dark, loggedIn = false}) =>
   <StyledNavBar
     className={dark ? 'dark' : ''}
     id="navbar"
@@ -60,8 +60,8 @@ const NavBar = ({dark}) =>
     <Link to="/contact">Contact</Link>
     <LoginButton
       className="button"
-      href="/admin">
-      Sign In
+      to="/admin">
+      { loggedIn ? `Admin` : `Sign In` }
     </LoginButton>
   </StyledNavBar>
 

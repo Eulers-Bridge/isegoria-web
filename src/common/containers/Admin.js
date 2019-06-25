@@ -3,8 +3,7 @@ import styled from 'styled-components';
 
 import { connect } from 'react-redux';
 
-import Route from 'react-router-dom/Route';
-import Switch from 'react-router-dom/Switch';
+import { Route, Switch } from 'react-router-dom';
 
 import * as AuthActions from '../actions/auth';
 
@@ -49,7 +48,7 @@ const AdminFeed = styled.div`
 
 class Admin extends React.Component {
   render() {
-    const { logout } = this.props;
+    const { logout, match } = this.props;
 
     return (
       <Content>
@@ -59,19 +58,19 @@ class Admin extends React.Component {
         <AdminContent>
           <AdminFeed>
             <Switch>
-              <Route path="/admin/articles/:id?" component={AdminArticle} />
-              <Route path="/admin/events/:id?" component={AdminEvent} />
-              <Route path="/admin/photos/:id?" component={AdminPhoto} />
-              <Route path="/admin/polls/:id?" component={AdminPoll} />
+              <Route path={`${match.path}/articles/:id?`} component={AdminArticle} />
+              <Route path={`${match.path}/events/:id?`} component={AdminEvent} />
+              <Route path={`${match.path}/photos/:id?`} component={AdminPhoto} />
+              <Route path={`${match.path}/polls/:id?`} component={AdminPoll} />
 
-              <Route path="/admin/elections/:id?" component={AdminElection} />
-              <Route path="/admin/positions/:id?" component={AdminPosition} />
-              <Route path="/admin/candidates/:id?" component={AdminCandidate} />
-              <Route path="/admin/tickets/:id?" component={AdminTicket} />
+              <Route path={`${match.path}/elections/:id?`} component={AdminElection} />
+              <Route path={`${match.path}/positions/:id?`} component={AdminPosition} />
+              <Route path={`${match.path}/candidates/:id?`} component={AdminCandidate} />
+              <Route path={`${match.path}/tickets/:id?`} component={AdminTicket} />
 
-              <Route path="/admin/invite" component={AdminInvite} />
+              <Route path={`${match.path}/invite`} component={AdminInvite} />
 
-              <Route path="/" component={AdminDashboard} />
+              <Route path={`${match.path}`} exact component={AdminDashboard} />
             </Switch>
           </AdminFeed>
         </AdminContent>

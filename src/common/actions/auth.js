@@ -11,7 +11,7 @@ export const RECEIVE_USER_DETAILS = 'RECEIVE_USER_DETAILS';
 export const SET_REDIRECT_URL = 'SET_REDIRECT_URL';
 
 
-export function attemptLogin (email, password) {
+export function attemptLogin (email, password, cb = () => true) {
   return dispatch => Promise.all([
     // ##TODON'T##
     dispatch(receiveUser({ email, password })),
@@ -25,6 +25,7 @@ export function attemptLogin (email, password) {
 
       return Promise.all([
         console.log(results),
+        cb(results),
         dispatch(loginSuccess(results)),
         // ##TODO## :: think about moving
         // dispatch(receiveArticles(results.articles)),
