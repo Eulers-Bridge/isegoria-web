@@ -97,8 +97,8 @@ class Terms extends React.Component {
                 The website <a href="https://isegoria.app" target="_blank" rel="noopener noreferrer">isegoria.app</a>
                 (<strong>“Website”</strong>) and application (<strong>“app”</strong> or
                 <strong>“Isegoria”</strong>) is operated by <em>Eulers Bridge Pty Ltd A.C.N.</em>
-                168 806 497 of Level 3, Old Metallurgy Building, University of Melbourne, Victoria
-                3010, AUSTRALIA, references to which are made as such: <strong>“Euler’s Bridge”,
+                168 806 497 c/o Minter Ellison, Level 23, Rialto Towers, 525 Collins Street,
+                Melbourne VIC 3000, AUSTRALIA, references to which are made as such: <strong>“Euler’s Bridge”,
                 “the team”, “we”, “us” or “our”.</strong> These terms and conditions
                 (<strong>“Terms of Use”</strong>) apply to your use of our Website and app, as well
                 as information, documents, logos, graphics, images, photographs, videos and other
