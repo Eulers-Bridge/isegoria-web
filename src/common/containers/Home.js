@@ -111,13 +111,6 @@ class Home extends React.Component {
                 architecture available, thanks to Amazon Web Services.</p>
               </div>
 
-              <div className="feature mini">
-                <img alt="Integration" src="/resources/integration.png" srcSet="/resources/integration@2x.png 2x" />
-                <h3>Integration</h3>
-                <p>Integration with your existing platform is a coffee break away. So you
-                can focus on your community, rather than tech support.</p>
-              </div>
-
 
               <div className="feature mini">
                 <img alt="Scalability" src="/resources/scalability.png" srcSet="/resources/scalability@2x.png 2x" />
